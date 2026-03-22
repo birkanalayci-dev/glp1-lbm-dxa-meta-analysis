@@ -1,0 +1,154 @@
+# GLP-1 and Dual GIP/GLP-1 Receptor Agonists — Lean Body Mass Meta-Analysis
+
+## Reproducible Code Repository
+
+**Manuscript:** "The Impact of GLP-1 and Dual GIP/GLP-1 Receptor Agonists on Lean Body Mass in Adults: A Systematic Review and Meta-Analysis of Randomized Controlled Trials Using DXA"
+
+**Authors:** Birkan Alayci, Öykü Zeynep Gerçek, [additional authors pending]
+
+**PROSPERO:** Submitted 20 March 2026 (pending moderation)
+
+---
+
+## Overview
+
+This repository contains the complete analytical code, input data, and output figures for a systematic review and meta-analysis examining the effect of incretin-based therapies on DXA-measured lean body mass (LBM) in kg. Five Phase 3/3b RCTs (k = 5, n = 505 DXA-evaluated participants) were included.
+
+Given the small number of studies, we employed **14 complementary statistical models** to ensure conclusions were not model-dependent:
+
+| Model | Purpose | Script |
+|-------|---------|--------|
+| DerSimonian-Laird (DL) | Primary random-effects | `01` |
+| Subgroup analyses (placebo/active/GLP-1 only) | Comparator-driven heterogeneity | `01` |
+| Leave-one-out sensitivity | Individual study influence | `01` |
+| Doi plot + LFK index | Small-study effects (k < 10) | `02` |
+| Peters' weighted regression | Publication bias | `02` |
+| Begg's rank correlation | Publication bias | `02` |
+| Egger's test (supplementary) | Publication bias (discounted at k < 10) | `02` |
+| HKSJ correction | Conservative CI at small k | `03` |
+| Prediction interval | Between-study heterogeneity range | `03` |
+| Bayesian random-effects | Posterior probabilities, prior sensitivity | `03`, `04` |
+| REML τ² estimator | Recommended by Cochrane Handbook 6.4 | `05` |
+| Paule-Mandel τ² estimator | Iterative τ² estimation | `05` |
+| Profile likelihood CI | Exact CI for μ and τ² | `05` |
+| Robust variance estimation (CR2) | LEAD-2/3 within-publication dependency | `05` |
+| Three-level model | Within-study correlation sensitivity | `05` |
+
+## Repository Structure
+
+```
+├── README.md
+├── LICENSE
+├── requirements.txt
+├── run_all.py
+├── data/
+│   └── meta_analysis_data.csv      # Extracted study-level data (5 comparisons)
+├── scripts/
+│   ├── 01_primary_meta_analysis.py  # DL, subgroups, leave-one-out, forest plots
+│   ├── 02_publication_bias.py       # Doi/LFK, Peters, Begg, Egger, funnel plot
+│   ├── 03_advanced_sensitivity.py   # HKSJ, PI, Bayesian (overall k=5)
+│   ├── 04_placebo_subgroup_advanced.py  # HKSJ, PI, Bayesian (placebo k=2)
+│   └── 05_tau2_estimators_rve.py    # REML, PM, profile likelihood, RVE, 3-level
+└── figures/
+    ├── forest_all.png               # Overall forest plot (k=5)
+    ├── forest_placebo.png           # Placebo-controlled subgroup (k=2)
+    ├── forest_active.png            # Active-comparator subgroup (k=3)
+    ├── forest_glp1.png              # GLP-1 RA only subgroup (k=4)
+    ├── funnel_plot.png              # Funnel plot
+    ├── doi_plot.png                 # Doi plot with LFK index
+    ├── peters_test.png              # Peters' regression
+    ├── loo_sensitivity.png          # Leave-one-out analysis
+    ├── forest_model_comparison.png  # 4-model comparison (overall)
+    ├── bayesian_posteriors.png      # Bayesian μ and τ posteriors (overall)
+    ├── forest_placebo_advanced.png  # 5-model comparison (placebo)
+    ├── bayesian_placebo.png         # Bayesian posteriors (placebo)
+    └── forest_tau2_comparison.png   # τ² estimator + RVE comparison
+```
+
+## Data
+
+`data/meta_analysis_data.csv` contains the following fields for each of the 5 study comparisons:
+
+| Field | Description |
+|-------|-------------|
+| `study_id` | Study identifier |
+| `drug` | Intervention agent |
+| `dose_mg` | Dose(s) evaluated |
+| `comparator` | Placebo or active comparator |
+| `duration_weeks` | Treatment duration |
+| `n_int` / `n_ctrl` | DXA subpopulation sample sizes |
+| `baseline_lbm_kg` | Baseline lean body mass (kg) |
+| `md_kg` | Mean difference in LBM (treatment − comparator) |
+| `se_kg` | Standard error of MD |
+| `source` | Data source (publication or clinical trial report) |
+| `estimand` | Statistical estimand (all ANCOVA, treatment policy) |
+
+### Data Sources
+
+- **SURMOUNT-1:** Look et al. (DOM, 2025) — Figure S2 ETD
+- **STEP-1:** Wilding et al. (NEJM, 2021) — Supplementary Table S5, treatment policy estimand
+- **SUSTAIN-8:** McCrimmon et al. (Diabetologia, 2020) — Table 2 ANCOVA
+- **LEAD-2:** Novo Nordisk Clinical Trial Report NN2211-1572, Table 11-51
+- **LEAD-3:** Novo Nordisk Clinical Trial Report NN2211-1573
+
+## Key Results
+
+| Analysis | MD (kg) | 95% CI/CrI | Significance |
+|----------|---------|-------------|--------------|
+| Overall (DL, k=5) | −2.28 | [−3.55; −1.00] | p = 0.0005 |
+| Placebo (DL, k=2) | −3.96 | [−4.90; −3.01] | p < 0.0001 |
+| Active (DL, k=3) | −1.20 | [−1.73; −0.68] | p < 0.0001 |
+| Overall HKSJ | −2.28 | [−4.15; −0.40] | p = 0.028 |
+| Overall Bayesian | −2.26 | [−4.01; −0.55] | P(Δ<0) = 99.1% |
+| Profile likelihood | −2.28 | [−3.75; −0.85] | Excludes zero |
+| RVE (CR2, m=4) | −2.28 | [−4.65; +0.09] | p = 0.055 (m<10 penalty) |
+
+## Requirements
+
+```
+Python >= 3.8
+numpy >= 1.20
+scipy >= 1.7
+matplotlib >= 3.4
+```
+
+Install: `pip install -r requirements.txt`
+
+## Usage
+
+Run all analyses sequentially:
+
+```bash
+python run_all.py
+```
+
+Or run individual scripts:
+
+```bash
+python scripts/01_primary_meta_analysis.py
+python scripts/02_publication_bias.py
+python scripts/03_advanced_sensitivity.py
+python scripts/04_placebo_subgroup_advanced.py
+python scripts/05_tau2_estimators_rve.py
+```
+
+All figures are saved to the `figures/` directory at 200 DPI.
+
+## Statistical Notes
+
+- **Primary analysis:** DerSimonian-Laird random-effects (standard in meta-analysis)
+- **τ² estimators:** DL, REML, and Paule-Mandel converge (1.83–1.99), confirming estimator-independence
+- **HKSJ at k=2:** Non-informative (df=1, t₀.₉₇₅ = 12.706) — reflects frequentist limitation, not evidence against effect
+- **Bayesian priors:** μ ~ N(0, 10²); τ ~ Half-Cauchy(0, scale); sensitivity across scale = {0.5, 1.0, 2.0}
+- **RVE:** CR2 bias-reduced linearization; LEAD-2 + LEAD-3 treated as single cluster (same publication)
+- **Profile likelihood:** Exact CI for both μ and τ², not dependent on Wald or cluster approximations
+
+## Citation
+
+If you use this code, please cite:
+
+> Alayci B, Gerçek ÖZ, et al. The impact of GLP-1 and dual GIP/GLP-1 receptor agonists on lean body mass in adults: a systematic review and meta-analysis of randomized controlled trials using DXA. [Manuscript submitted for publication]. 2026.
+
+## License
+
+MIT License — see [LICENSE](LICENSE)
