@@ -1,0 +1,42 @@
+{
+  "title": "DXA-measured body composition effects of GLP-1 and dual GIP/GLP-1 receptor agonists in adults with obesity or type 2 diabetes: analysis code and data (version 2.0, revised for BMC Endocrine Disorders)",
+  "upload_type": "software",
+  "description": "<p>Data and R code for the systematic review and meta-analysis of phase 3 randomized trials reporting DXA-derived lean body mass and fat mass with GLP-1 and dual GIP/GLP-1 receptor agonists (PROSPERO CRD420261323497). Version 2.0 (September 2026) accompanies the revised manuscript submitted to <em>BMC Endocrine Disorders</em>: three lean-mass values (STEP-1, LEAD-2, LEAD-3) were corrected after re-verification against the primary source tables during peer review; the data file documents the source table for every value and the originally submitted data are retained as data_raw_v1_submitted.csv. The analysis (glp1_dxa_meta_v1_2.R, revision_analyses.R) implements the REML + Hartung-Knapp-Sidik-Jonkman primary model, prediction intervals, tau-squared estimator comparison, profile-likelihood intervals, robust variance estimation, a three-level model, leave-one-out and expanded-inclusion analyses, small-study-effect diagnostics (Egger, Begg, Doi plot/LFK via metasens) and Bayesian random-effects models (brms, bayesmeta). All outputs (tables, figures, console log) are included; see README.md and CHANGELOG.md.</p>",
+  "creators": [
+    {
+      "name": "Alaycı, Birkan",
+      "affiliation": "Department of Internal Medicine, Liv Hospital Vadi İstanbul, İstanbul, Türkiye",
+      "orcid": "0000-0002-8244-0987"
+    },
+    {
+      "name": "Gerçek, Öykü Zeynep",
+      "affiliation": "Department of Internal Medicine, Muş State Hospital, Muş, Türkiye",
+      "orcid": "0000-0002-3502-2977"
+    }
+  ],
+  "keywords": [
+    "GLP-1 receptor agonist",
+    "tirzepatide",
+    "semaglutide",
+    "liraglutide",
+    "lean body mass",
+    "body composition",
+    "dual-energy X-ray absorptiometry",
+    "meta-analysis",
+    "obesity",
+    "type 2 diabetes",
+    "R",
+    "metafor"
+  ],
+  "license": "cc-by-4.0",
+  "access_right": "open",
+  "language": "eng",
+  "version": "2.0",
+  "related_identifiers": [
+    {
+      "identifier": "https://www.crd.york.ac.uk/PROSPERO/view/CRD420261323497",
+      "relation": "references"
+    }
+  ],
+  "notes": "Code: MIT License (see LICENSE). Extracted trial-level data, tables and figures: CC BY 4.0. The underlying trial reports remain the property of their publishers and sponsors. LEAD-2 and LEAD-3 clinical trial report data were obtained through the Novo Nordisk external researcher data access service."
+}

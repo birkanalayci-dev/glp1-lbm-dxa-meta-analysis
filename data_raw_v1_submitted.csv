@@ -1,0 +1,8 @@
+study_id,drug,dose_mg,comparator,duration_wks,n_int,n_ctrl,lean_md_kg,lean_se_kg,fat_md_kg,fat_se_kg,analysis,source
+SURMOUNT-1,Tirzepatide,pooled(5/10/15),Placebo,72,124,36,-4.40,0.61,-12.30,1.403,primary,Look2025 DOM
+STEP-1,Semaglutide,2.4,Placebo,68,95,45,-1.79,0.35,-6.99,1.429,primary,"Wilding2021 NEJM Table S5 (%-point ETD x pooled baseline LBM 52.1 kg)"
+SUSTAIN-8,Semaglutide,1.0,Canagliflozin,52,53,61,-0.78,0.41,-0.79,0.666,primary,McCrimmon2020 Diabetologia
+LEAD-2,Liraglutide,1.8,Glimepiride+Metformin,26,30,32,-1.535,0.473,-3.532,0.841,primary,CTR NN2211-1572
+LEAD-3,Liraglutide,1.8,Glimepiride,52,17,12,-1.508,0.540,-3.367,1.213,primary,CTR NN2211-1573
+S-LiTE,Liraglutide,3.0,Placebo,52,49,49,-2.90,0.765,-4.60,1.352,sensitivity_A,Lundgren2021 NEJM
+BARI-OPTIMISE,Liraglutide,3.0,Placebo,24,23,24,-3.22,0.806,-4.85,1.186,sensitivity_B,Mok2023 JAMA Surg

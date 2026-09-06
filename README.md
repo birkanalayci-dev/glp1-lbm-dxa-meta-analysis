@@ -1,175 +1,63 @@
-# GLP-1 and Dual GIP/GLP-1 Receptor Agonists — Body Composition Meta-Analysis
+# DXA-measured body composition effects of GLP-1 and dual GIP/GLP-1 receptor agonists — analysis code and data
 
-## Reproducible Code Repository
+Systematic review and meta-analysis of phase 3 randomized trials with DXA-derived lean body mass and fat mass in adults with obesity or type 2 diabetes.
 
-**Manuscript:** "Composition of Weight Loss Associated with Incretin-Based Therapy: A Systematic Review and Meta-Analysis of DXA-Measured Lean and Fat Mass in Randomized Controlled Trials"
+**Authors:** Birkan Alaycı, Öykü Zeynep Gerçek  
+**Registration:** PROSPERO CRD420261323497  
+**Manuscript:** under peer review at *BMC Endocrine Disorders* (submission 69e5b6d9; revised version September 2026)  
+**Archive:** Zenodo concept DOI 10.5281/zenodo.19158245 (resolves to the latest version; this release = version 2.0, archived automatically from the GitHub release v2.0)
 
-**Journal:** *Diabetes, Obesity and Metabolism* — Manuscript ID: DOM-26-1453-OP
+## Version 2 (September 2026) — what changed
 
-**Authors:** Birkan Alayci, Öykü Zeynep Gerçek
+During peer review all extracted values were re-verified against the primary source tables. Three lean-mass values in version 1 were incorrect and have been corrected (see `CHANGELOG.md` and `data_raw_v1_submitted.csv` for the superseded values):
 
-**PROSPERO:** CRD420261323497
+| Trial | v1 lean MD (kg) | v2 lean MD (kg) [95% CI] | Reason |
+|---|---|---|---|
+| STEP-1 | −1.79 | −3.43 [−4.74, −2.13] | Wilding 2021 Table S5 reports the ETD directly in kg; v1 had treated it as percentage points and rescaled by baseline lean mass |
+| LEAD-2 | −1.535 | −2.816 [−3.979, −1.652] | v1 entered the within-arm change of the liraglutide 1.8 mg arm instead of the ETD vs glimepiride + metformin (CTR NN2211-1572, Table 11-51) |
+| LEAD-3 | −1.508 | −0.956 [−2.697, +0.785] | same error; ETD vs glimepiride (CTR NN2211-1573, Table 11-44) |
+| SUSTAIN-8 | SE 0.41 | SE 0.421 | rounding of the CI-derived SE |
 
----
+Fat-mass values were correct in v1. The primary analysis (REML + Hartung–Knapp–Sidik–Jonkman) is unchanged in specification. Pooled lean-mass difference: v1 −1.96 kg [−3.64, −0.27] → v2 −2.49 kg [−4.45, −0.53]; the type 2 diabetes subgroup is no longer homogeneous (I² 5% → 73%).
 
-## Overview
+The analysis is implemented in R. The Python scripts and R cross-validation scripts from the March 2026 (version 1) deposit are retained for the record but are superseded; they use the version-1 data and a DerSimonian–Laird primary model.
 
-This repository contains the analytical code, input data, R cross-validation scripts, and output figures for a systematic review and meta-analysis examining the effect of incretin-based therapies on DXA-measured lean body mass and fat mass. Five Phase 3/3b RCTs (k = 5, n = 505 DXA-evaluated participants) were included.
+## Files
 
-Given the small number of studies, we employed **14 complementary statistical models** to ensure conclusions were not model-dependent:
+| File | Content |
+|---|---|
+| `data_raw.csv` | Trial-level data (5 primary + 2 sensitivity comparisons). `source` gives the exact source table for every value. |
+| `data_raw_v1_submitted.csv` | Data as used in the originally submitted manuscript (superseded; kept for transparency). |
+| `glp1_dxa_meta_v1_2.R` | Main analysis: primary HKSJ-REML models, subgroups, meta-regression, τ² estimators, profile-likelihood CIs, RVE (CR2), three-level model, leave-one-out, small-study effects (Egger, Begg, metasens LFK/Doi), expanded inclusion (k = 6, 7), descriptive lean share, forest plots, Bayesian models (brms, bayesmeta), prior sensitivity, key-results table. |
+| `revision_analyses.R` | Analyses added at peer review: prediction intervals for subgroups, HKSJ leave-one-out, primary analyses excluding STEP-1, descriptive lean share. |
+| `output/tables/*.csv` | All numerical outputs (key_results, tau2 comparisons, profile likelihood, RVE, three-level, LOO, small-study effects, expanded sets, Bayesian cross-validation, prior sensitivity, lean share). |
+| `output/figures/*.png` | Forest plots (overall, by population, by comparator), Doi plots, bayesmeta posteriors. |
+| `output/console_log.txt` | Full console log of the run that produced the deposited outputs. |
+| `output/console_run_2026-09-04.txt` | Condensed record of the first corrected run (v1.1 script), including RVE and three-level results. |
+| `CHANGELOG.md` | Version history. |
+| `.zenodo.json`, `LICENSE` | Zenodo metadata for the archived release; licence (code MIT; data, tables and figures CC BY 4.0). |
+| `01_*.py` … `05_*.py`, `run_all.py`, `requirements.txt`, `R_*_cross_validation.R`, `meta_analysis_data*.csv`, root-level `*.png`, `glp1_lbm_meta_analysis_code.zip`, `CROSS_CHECK_REPORT.md` | Version-1 material (March 2026: Python analysis with a DerSimonian–Laird primary model, R cross-validation scripts, version-1 data and figures). Superseded by the files above; retained unchanged for the record. |
 
-| Model | Purpose | Script |
-|-------|---------|--------|
-| DerSimonian-Laird (DL) | Primary random-effects | `01` |
-| Subgroup analyses (placebo/active/GLP-1 only) | Comparator-driven heterogeneity | `01` |
-| Leave-one-out sensitivity | Individual study influence | `01` |
-| Doi plot + LFK index | Small-study effects (k < 10) | `02` |
-| Peters' weighted regression | Publication bias | `02` |
-| Begg's rank correlation | Publication bias | `02` |
-| Egger's test (supplementary) | Publication bias (discounted at k < 10) | `02` |
-| HKSJ correction | Conservative CI at small k | `03` |
-| Prediction interval (t-based, df=k-2) | Between-study heterogeneity range | `03` |
-| Bayesian random-effects | Posterior probabilities, prior sensitivity | `03`, `04` |
-| REML τ² estimator | Recommended by Cochrane Handbook 6.4 | `03` |
-| Paule-Mandel τ² estimator | Iterative τ² estimation | `03` |
-| Profile likelihood CI | Exact CI for μ and τ² | `03` |
-| Robust variance estimation (CR2) | LEAD-2/3 within-publication dependency | `03` |
-| Three-level model | Within-study correlation sensitivity | `03` |
-
-## Repository Contents
-
-```
-├── README.md
-├── LICENSE
-├── meta_analysis_data_v5.csv           # Study-level data (5 primary + 2 sensitivity)
-├── 01_primary_meta_analysis.py         # DL, subgroups, leave-one-out, forest plots
-├── 02_publication_bias.py              # Doi/LFK, Peters, Begg, Egger, funnel plot
-├── 03_advanced_sensitivity.py          # HKSJ, PI, Bayesian, REML, PM, RVE, 3-level
-├── 04_placebo_subgroup_advanced.py     # Placebo subgroup: HKSJ, PI, Bayesian
-├── R_lean_mass_cross_validation.R      # R metafor cross-validation (lean mass)
-├── R_fat_mass_cross_validation.R       # R metafor cross-validation (fat mass)
-├── forest_all.png                      # Figure 1: Overall forest plot (k=5)
-├── forest_placebo.png                  # Figure 2A: Placebo subgroup (k=2)
-├── forest_glp1.png                     # Figure S1: GLP-1 RA only (k=4)
-├── funnel_plot.png                     # Figure S2: Funnel plot
-├── doi_plot.png                        # Figure 4 / S3: Doi plot with LFK index
-├── peters_test.png                     # Figure S4: Peters' regression
-├── loo_sensitivity.png                 # Figure 3 / S5: Leave-one-out
-├── forest_model_comparison.png         # Figure S6: Multi-model comparison (overall)
-├── bayesian_posteriors.png             # Figure S8: Bayesian posteriors (overall)
-├── forest_placebo_advanced.png         # Figure S7: Multi-model comparison (placebo)
-├── bayesian_placebo.png                # Figure S9: Bayesian posteriors (placebo)
-└── forest_tau2_comparison.png          # Figure S10: τ² estimator comparison
-```
-
-## Data
-
-`meta_analysis_data_v5.csv` contains the following fields for each study comparison:
-
-| Field | Description |
-|-------|-------------|
-| `study_id` | Study identifier |
-| `drug` | Intervention agent |
-| `dose_mg` | Dose(s) evaluated |
-| `comparator` | Placebo or active comparator |
-| `duration_wks` | Treatment duration (weeks) |
-| `n_int` / `n_ctrl` | DXA subpopulation sample sizes |
-| `lean_md_kg` | Mean difference in lean mass (kg) |
-| `lean_se_kg` | Standard error of lean mass MD |
-| `fat_md_kg` | Mean difference in fat mass (kg) |
-| `fat_se_kg` | Standard error of fat mass MD |
-| `analysis` | Primary (k=5) or sensitivity (k=6–7) |
-| `source` | Data source (publication or clinical trial report) |
-
-### Data Sources
-
-- **SURMOUNT-1:** Look et al. (DOM, 2025) — ETD
-- **STEP-1:** Wilding et al. (NEJM, 2021) — Table S5, treatment policy estimand
-- **SUSTAIN-8:** McCrimmon et al. (Diabetologia, 2020) — Table 2 ANCOVA
-- **LEAD-2:** Novo Nordisk CTR NN2211-1572
-- **LEAD-3:** Novo Nordisk CTR NN2211-1573
-
-## Key Results
-
-### Lean Mass (Primary Outcome)
-
-| Analysis | MD (kg) | 95% CI/CrI | Significance |
-|----------|---------|------------|-------------|
-| Overall (DL, k=5) | −1.94 | [−2.96; −0.93] | p = 0.0002 |
-| Placebo (DL, k=2) | −3.05 | [−5.60; −0.49] | p = 0.020 |
-| Active (DL, k=3) | −1.20 | [−1.73; −0.68] | p < 0.0001 |
-| Overall HKSJ | −1.94 | [−3.62; −0.27] | p = 0.032 |
-| 95% Prediction interval | −1.94 | [−5.66; +1.77] | Crosses zero |
-| Overall Bayesian HC(0,2) | −1.94 | [−3.51; −0.43] | P(Δ<0) = 98.9% |
-| Profile likelihood | −1.95 | [−2.97; −0.92] | Excludes zero |
-| RVE (CR2, m=4) | −1.96 | [−4.01; +0.09] | p = 0.058 |
-
-### Fat Mass (Secondary Outcome)
-
-| Analysis | MD (kg) | 95% CI | Significance |
-|----------|---------|--------|-------------|
-| Overall (DL, k=5) | −5.27 | [−8.81; −1.72] | p = 0.004 |
-| Placebo (DL, k=2) | −9.65 | [−14.86; −4.45] | p = 0.0003 |
-| Active (DL, k=3) | −2.45 | [−4.42; −0.47] | p = 0.015 |
-
-### Lean-to-Fat Ratio
-
-| Subgroup | Lean % | Fat % |
-|----------|--------|-------|
-| Overall (k=5) | 27.0% | 73.0% |
-| Placebo (k=2) | 24.0% | 76.0% |
-| Active (k=3) | 32.9% | 67.1% |
-
-## R Cross-Validation
-
-Python results were independently cross-validated using R 4.5 with `metafor` and `clubSandwich`:
+## Reproducing
 
 ```r
-# Lean mass
-Rscript R_lean_mass_cross_validation.R
-
-# Fat mass
-Rscript R_fat_mass_cross_validation.R
+# R >= 4.5; packages: metafor, clubSandwich, dplyr, readr, tibble, brms (Stan), posterior, bayesmeta, metasens
+setwd("path/to/repo")
+source("glp1_dxa_meta_v1_2.R")   # ~10-15 min (Bayesian models)
+source("revision_analyses.R")
 ```
 
-All models (DL, REML, PM, HKSJ, PI, RVE, three-level) were verified to match within numerical precision (Δ < 0.01).
+Outputs are written to `output/`. Bayesian summaries are subject to Monte Carlo variation (about ±0.03 kg in posterior means and ±1 percentage point in P(μ<0) between runs); `set.seed(20260508)` is used but results depend on the Stan/brms versions installed. Session information is printed at the end of the console log.
 
-## Requirements
+## Data sources
 
-```
-Python >= 3.8
-numpy >= 1.20
-scipy >= 1.7
-matplotlib >= 3.4
-```
-
-## Usage
-
-Run individual scripts:
-
-```bash
-python 01_primary_meta_analysis.py
-python 02_publication_bias.py
-python 03_advanced_sensitivity.py
-python 04_placebo_subgroup_advanced.py
-```
-
-## Statistical Notes
-
-- **Primary analysis:** DerSimonian-Laird random-effects
-- **Prediction intervals:** t-distribution (df = k−2), consistent with R metafor `predict()`
-- **HKSJ at k=2:** Non-informative (df=1, t₀.₉₇₅ = 12.706) — reflects frequentist limitation, not evidence against effect
-- **Bayesian priors:** μ ~ N(0, 10²); τ ~ Half-Cauchy(0, scale); sensitivity across scale = {0.5, 1.0, 2.0}
-- **RVE:** CR2 bias-reduced linearization; LEAD-2 + LEAD-3 treated as single cluster (same publication)
-
-## Citation
-
-> Alayci B, Gerçek ÖZ. Composition of weight loss associated with incretin-based therapy: a systematic review and meta-analysis of DXA-measured lean and fat mass in randomized controlled trials. *Diabetes, Obesity and Metabolism*. 2026. Manuscript ID: DOM-26-1453-OP.
-
-## Permanent Archive
-
-**Zenodo DOI:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19158245.svg)](https://doi.org/10.5281/zenodo.19158245)
+- SURMOUNT-1: Look et al., Diabetes Obes Metab 2025 (DXA substudy, Fig. 1)
+- STEP-1: Wilding et al., N Engl J Med 2021, Supplementary Table S5 (treatment-policy estimand)
+- SUSTAIN-8: McCrimmon et al., Diabetologia 2020 (confirmatory on-treatment analysis)
+- LEAD-2 / LEAD-3: Novo Nordisk clinical trial reports NN2211-1572 and NN2211-1573, obtained through the external researcher data access service (novonordisk-trials.com); DXA results also published by Jendle et al., Diabetes Obes Metab 2009
+- S-LiTE: Lundgren et al., N Engl J Med 2021, Supplementary Table S6
+- BARI-OPTIMISE: Mok et al., JAMA Surg 2023, Table 2
 
 ## License
 
-MIT License — see [LICENSE](LICENSE)
+Code: MIT License (see `LICENSE`). Extracted trial-level data, output tables and figures: CC BY 4.0. The underlying trial reports remain the property of their publishers/sponsors.
