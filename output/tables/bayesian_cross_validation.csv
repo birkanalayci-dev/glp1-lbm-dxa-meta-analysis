@@ -1,0 +1,3 @@
+Outcome,brms_mean,brms_CrI,bayesmeta_mean,bayesmeta_CrI,abs_diff_pct
+Lean,-2.444,"[-4.165, -0.587]",-2.465,"[-4.133, -0.796]",0.86
+Fat,-5.074,"[-9.395, -0.671]",-5.016,"[-9.280, -0.750]",1.14
