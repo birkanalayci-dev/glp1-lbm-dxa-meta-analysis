@@ -1,6 +1,6 @@
 # Search strategies
 
-Systematic review and meta-analysis of DXA-measured body composition with GLP-1 and dual GIP/GLP-1 receptor agonists (PROSPERO CRD420261323497). Identical to Additional file 1, Table S3 of the revised manuscript (BMC Endocrine Disorders, September 2026). Original searches 23 March 2026; update searches 4 September 2026.
+Systematic review and meta-analysis of DXA-measured body composition with GLP-1 and dual GIP/GLP-1 receptor agonists (PROSPERO CRD420261323497). Identical to Additional file 1, Table S3 of the revised manuscript (BMC Endocrine Disorders, September 2026). Original searches 23 March 2026; update searches 4 September 2026; Web of Science Core Collection 6 September 2026.
 
 ## S3a. PubMed (MEDLINE)
 
@@ -58,6 +58,21 @@ The three strategies above were re-run with `OR "orforglipron"[All Fields]` (Pub
 | Cochrane CENTRAL (trials added March – September 2026) | 89 | 89 | 2 | 0 |
 | Scopus (PUBYEAR > 2025) | 48 | 41 | 2 | 0 |
 | ClinicalTrials.gov (results first posted after 23 March 2026) | 0 | — | — | 0 |
-| **Total** | **169** | **146 unique** (7 already in the March set; 16 duplicates across databases) | **4 unique** | **0** |
+| **Subtotal, 4 September 2026** | **169** | **146 unique** (7 already in the March set; 16 duplicates across databases) | **4 unique** | **0** |
+| Web of Science Core Collection (6 September 2026; Table S3e) | 479 | 324 (128 in the March set; 27 in the 4 September set) | 3 | 0 |
+| **Total, update searches** | **648** | **470** | **7** | **0** |
 
-Embase was not searched because the authors did not have institutional access. As a check on the risk of missed studies, the included-study lists of two 2026 systematic reviews that searched Embase were compared with our eligibility criteria: Batsis et al. (Ann Intern Med 2026; Embase to February 2026; 35 randomized trials) and Laverde et al. (Int J Obes 2026; Embase to April 2025; 7 randomized trials). Neither contained a phase 3 trial with DXA-derived lean and fat mass at ≥24 weeks that is absent from this review; both were restricted to populations with obesity and therefore do not cover trials in type 2 diabetes.
+Embase was not searched: it is not included in the Turkish national academic licence or in the subscriptions of the institutions accessible to the authors, and attempts to obtain access through colleagues at other institutions during revision (September 2026) were unsuccessful. As a check on the risk of missed studies, the included-study lists of two 2026 systematic reviews that searched Embase were compared with our eligibility criteria: Batsis et al. (Ann Intern Med 2026; Embase to February 2026; 35 randomized trials) and Laverde et al. (Int J Obes 2026; Embase to April 2025; 7 randomized trials). Neither contained a phase 3 trial with DXA-derived lean and fat mass at ≥24 weeks that is absent from this review; both were restricted to populations with obesity and therefore do not cover trials in type 2 diabetes.
+
+## S3e. Web of Science Core Collection (Clarivate; all editions), searched 6 September 2026
+
+**Date of search:** 6 September 2026 (inception to search date; no language or date limits; institutional access via Sağlık Bilimleri University). **Records retrieved:** 479, of which 155 were already in the March or 4 September 2026 sets (de-duplication by DOI and normalised title); 324 new records were screened, 3 were assessed in full text (Table S4) and none was eligible. Added after peer review because Embase was not available; the strategy mirrors the three-block PubMed structure (Table S3a) and includes orforglipron.
+
+    TS=(semaglutide OR liraglutide OR tirzepatide OR dulaglutide OR exenatide
+        OR lixisenatide OR orforglipron OR incretin* OR "GLP-1" OR "GLP 1"
+        OR "glucagon-like peptide-1" OR "glucagon like peptide 1" OR exendin*)
+    AND TS=("lean mass" OR "lean body mass" OR "lean tissue" OR "lean soft tissue"
+        OR "fat-free mass" OR "fat free mass" OR "body composition" OR "muscle mass"
+        OR DXA OR DEXA OR "dual-energy x-ray" OR "dual energy x-ray" OR absorptiometry)
+    AND TS=(random* OR placebo* OR "double blind" OR "double-blind"
+        OR "phase 3" OR "phase III")
