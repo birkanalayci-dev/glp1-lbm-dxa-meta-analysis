@@ -51,7 +51,7 @@ Outputs are written to `output/`. Bayesian summaries are subject to Monte Carlo 
 
 ## Data sources
 
-- SURMOUNT-1: Look et al., Diabetes Obes Metab 2025 (DXA substudy, Fig. 1)
+- SURMOUNT-1: Look et al., Diabetes Obes Metab 2025 (DXA substudy; absolute-kg estimated treatment differences in the Results text and Figure S2)
 - STEP-1: Wilding et al., N Engl J Med 2021, Supplementary Table S5 (treatment-policy estimand)
 - SUSTAIN-8: McCrimmon et al., Diabetologia 2020 (confirmatory on-treatment analysis)
 - LEAD-2 / LEAD-3: Novo Nordisk clinical trial reports NN2211-1572 and NN2211-1573, obtained through the external researcher data access service (novonordisk-trials.com); DXA results also published by Jendle et al., Diabetes Obes Metab 2009

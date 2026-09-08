@@ -24,5 +24,8 @@
 - LFK (metasens): lean −0.03, fat −2.28 (version 1 reported +0.19 / +0.34 from a different implementation).
 - Fat-mass analyses unchanged.
 
+### Post-release note (7 September 2026, main branch only)
+- `data_raw.csv` and `README.md`: the source note for SURMOUNT-1 now points to the Results text and Figure S2 of Look 2025 (absolute-kg treatment differences) instead of "Fig. 1" (which shows percentage changes). Values unchanged. The Zenodo v2.0 archive carries the earlier wording.
+
 ## Version 1 — March 2026
 - Initial deposit (Python analysis with DerSimonian–Laird primary model and R cross-validation scripts; data as extracted in March 2026).
