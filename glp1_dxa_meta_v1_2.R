@@ -1,6 +1,6 @@
 # ===============================================================
 # GLP-1 / dual GIP-GLP-1 agonists and DXA body composition
-# Systematic review and meta-analysis — analysis script v1.2
+# Systematic review and meta-analysis: analysis script v1.2
 # Authors: Birkan Alaycı, Öykü Zeynep Gerçek
 # PROSPERO CRD420261323497
 #
@@ -44,7 +44,7 @@ con <- file("output/console_log.txt", open = "wt")
 sink(con, split = TRUE)
 
 cat("================================================================\n")
-cat("GLP-1/Dual Agonist DXA Meta-Analysis — v1.2 (revision)\n")
+cat("GLP-1/Dual Agonist DXA Meta-Analysis, v1.2 (revision)\n")
 cat("Run date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n")
 cat("R version:", R.version.string, "\n")
 cat("brms cores:", n_cores, "\n")
@@ -93,13 +93,13 @@ pi_of <- function(m) {
 # ---- 2. PRIMARY (HKSJ-REML primary; DL sensitivity) ----
 
 cat("\n================================================================\n")
-cat("SECTION 2 — PRIMARY ANALYSES (Frequentist)\n")
+cat("SECTION 2: PRIMARY ANALYSES (Frequentist)\n")
 cat("================================================================\n")
 
 m_lean_hksj <- fit_hksj(dat_primary, "lean_md_kg", "lean_vi")
 m_lean_dl   <- rma(yi = lean_md_kg, vi = lean_vi, data = dat_primary,
                    slab = study_id, method = "DL")
-cat("\n--- LEAN MASS — Overall (k=5) ---\n")
+cat("\n--- LEAN MASS: Overall (k=5) ---\n")
 cat("[PRIMARY] HKSJ-REML:\n"); print(m_lean_hksj)
 cat("\n[Sensitivity] DerSimonian-Laird:\n"); print(m_lean_dl)
 pi_lean <- pi_of(m_lean_hksj)
@@ -109,7 +109,7 @@ cat(sprintf("\n95%% PI (lean, t with k-1 df as implemented in metafor): [%.3f, %
 m_fat_hksj <- fit_hksj(dat_primary, "fat_md_kg", "fat_vi")
 m_fat_dl   <- rma(yi = fat_md_kg, vi = fat_vi, data = dat_primary,
                   slab = study_id, method = "DL")
-cat("\n--- FAT MASS — Overall (k=5) ---\n")
+cat("\n--- FAT MASS: Overall (k=5) ---\n")
 cat("[PRIMARY] HKSJ-REML:\n"); print(m_fat_hksj)
 cat("\n[Sensitivity] DerSimonian-Laird:\n"); print(m_fat_dl)
 pi_fat <- pi_of(m_fat_hksj)
@@ -118,7 +118,7 @@ cat(sprintf("\n95%% PI (fat): [%.3f, %.3f] kg\n", pi_fat["PI_lb"], pi_fat["PI_ub
 # ---- 3. SUBGROUP ----
 
 cat("\n================================================================\n")
-cat("SECTION 3 — SUBGROUP ANALYSES\n")
+cat("SECTION 3: SUBGROUP ANALYSES\n")
 cat("================================================================\n")
 
 run_sub <- function(dat_sub, outcome, label) {
@@ -159,7 +159,7 @@ print(dat_primary %>% filter(drug_class == "dual_GIP_GLP1") %>%
 # ---- 4. META-REGRESSION (exploratory, k=5) ----
 
 cat("\n================================================================\n")
-cat("SECTION 4 — META-REGRESSION (Exploratory, k=5)\n")
+cat("SECTION 4: META-REGRESSION (Exploratory, k=5)\n")
 cat("================================================================\n")
 cat("\n[Lean] ~ duration_wks\n")
 print(rma(yi = lean_md_kg, vi = lean_vi, mods = ~ duration_wks, data = dat_primary, method = "REML", test = "knha"))
@@ -173,7 +173,7 @@ print(rma(yi = fat_md_kg, vi = fat_vi, mods = ~ duration_wks, data = dat_primary
 # ---- 5. TAU^2 ESTIMATORS + PROFILE LIKELIHOOD ----
 
 cat("\n================================================================\n")
-cat("SECTION 5 — TAU^2 ESTIMATORS\n")
+cat("SECTION 5: TAU^2 ESTIMATORS\n")
 cat("================================================================\n")
 
 tau_methods <- c("DL", "REML", "PM", "ML", "EB", "SJ")
@@ -196,8 +196,8 @@ write_csv(tau_table_fat, "output/tables/tau2_comparison_fat.csv")
 
 pl_lean <- confint(rma(yi = lean_md_kg, vi = lean_vi, data = dat_primary, method = "REML"))
 pl_fat  <- confint(rma(yi = fat_md_kg,  vi = fat_vi,  data = dat_primary, method = "REML"))
-cat("\n[Profile likelihood — Lean]\n"); print(pl_lean)
-cat("\n[Profile likelihood — Fat]\n");  print(pl_fat)
+cat("\n[Profile likelihood: Lean]\n"); print(pl_lean)
+cat("\n[Profile likelihood: Fat]\n");  print(pl_fat)
 pl_tab <- rbind(
   data.frame(outcome = "Lean", quantity = rownames(pl_lean$random), pl_lean$random, row.names = NULL),
   data.frame(outcome = "Fat",  quantity = rownames(pl_fat$random),  pl_fat$random,  row.names = NULL))
@@ -206,7 +206,7 @@ write_csv(pl_tab, "output/tables/profile_likelihood_tau2.csv")
 # ---- 6. RVE (CR2, LEAD-2/LEAD-3 as one cluster) ----
 
 cat("\n================================================================\n")
-cat("SECTION 6 — RVE WITH CR2 (LEAD-2/3 cluster)\n")
+cat("SECTION 6: RVE WITH CR2 (LEAD-2/3 cluster)\n")
 cat("================================================================\n")
 
 dat_rve <- dat_primary %>%
@@ -228,7 +228,7 @@ write_csv(rbind(rve_lean, rve_fat), "output/tables/rve_cr2.csv")
 # ---- 7. THREE-LEVEL MODEL ----
 
 cat("\n================================================================\n")
-cat("SECTION 7 — THREE-LEVEL MODEL\n")
+cat("SECTION 7: THREE-LEVEL MODEL\n")
 cat("================================================================\n")
 
 dat_3l <- dat_primary %>%
@@ -252,7 +252,7 @@ if (!is.null(tl_tab)) write_csv(tl_tab, "output/tables/three_level.csv")
 # ---- 8. LEAVE-ONE-OUT (HKSJ-REML) ----
 
 cat("\n================================================================\n")
-cat("SECTION 8 — LEAVE-ONE-OUT (HKSJ-REML)\n")
+cat("SECTION 8: LEAVE-ONE-OUT (HKSJ-REML)\n")
 cat("================================================================\n")
 loo_tab <- function(m, outcome) {
   l <- leave1out(m)
@@ -267,7 +267,7 @@ write_csv(loo_fat,  "output/tables/loo_fat.csv")
 # ---- 9. SMALL-STUDY EFFECTS (k=5: report as not assessable) ----
 
 cat("\n================================================================\n")
-cat("SECTION 9 — SMALL-STUDY EFFECTS (k=5, underpowered; descriptive only)\n")
+cat("SECTION 9: SMALL-STUDY EFFECTS (k=5, underpowered; descriptive only)\n")
 cat("================================================================\n")
 
 ssb <- function(m_dl, yi, vi, outcome) {
@@ -281,7 +281,7 @@ ssb <- function(m_dl, yi, vi, outcome) {
     if (!is.null(res)) { lfk <- res$lfkindex; lfk_txt <- res$interpretation; print(res) }
     png(sprintf("output/figures/doi_%s.png", tolower(outcome)), width = 1600, height = 1400, res = 200)
     tryCatch(metasens::doiplot(TE = dat_primary[[yi]], seTE = sqrt(dat_primary[[vi]]),
-                               main = paste("Doi plot —", outcome)),
+                               main = paste("Doi plot:", outcome)),
              error = function(e) plot.new())
     dev.off()
   }
@@ -297,7 +297,7 @@ write_csv(ssb_tab, "output/tables/small_study_effects.csv")
 # ---- 10. EXPANDED INCLUSION ----
 
 cat("\n================================================================\n")
-cat("SECTION 10 — EXPANDED INCLUSION\n")
+cat("SECTION 10: EXPANDED INCLUSION\n")
 cat("================================================================\n")
 run_exp <- function(dat_sub, label) {
   cat(sprintf("\n>>> %s (k=%d)\n", label, nrow(dat_sub)))
@@ -312,7 +312,7 @@ m_k7_set <- run_exp(dat_k7, "k=7 (+ S-LiTE + BARI-OPTIMISE)")
 # ---- 11. LEAN SHARE OF POOLED LOSS (descriptive only) ----
 
 cat("\n================================================================\n")
-cat("SECTION 11 — LEAN SHARE OF POOLED LOSS (descriptive; no interval)\n")
+cat("SECTION 11: LEAN SHARE OF POOLED LOSS (descriptive; no interval)\n")
 cat("================================================================\n")
 frac <- function(l, f) abs(l) / (abs(l) + abs(f)) * 100
 share_tab <- bind_rows(
@@ -328,7 +328,7 @@ cat("Note: ratios of trial-level pooled point estimates; not patient-level; no i
 # ---- 12. FOREST PLOTS ----
 
 cat("\n================================================================\n")
-cat("SECTION 12 — FOREST PLOTS\n")
+cat("SECTION 12: FOREST PLOTS\n")
 cat("================================================================\n")
 forest_one <- function(m, outfile, title_text, xlab_text, width = 2400, height = 1400) {
   png(outfile, width = width, height = height, res = 220)
@@ -364,10 +364,10 @@ if (!is.null(m_lean_act) && !is.null(m_lean_pbo))
   forest_two(m_lean_act, m_lean_pbo, "A. Active comparator (k = 3)", "B. Placebo (k = 2)",
              "output/figures/forest_lean_by_comparator.png", "Mean difference in lean mass (kg)")
 
-# ---- 13. BAYESIAN — brms ----
+# ---- 13. BAYESIAN: brms ----
 
 cat("\n================================================================\n")
-cat("SECTION 13 — BAYESIAN RANDOM-EFFECTS (brms / Stan)\n")
+cat("SECTION 13: BAYESIAN RANDOM-EFFECTS (brms / Stan)\n")
 cat("================================================================\n")
 
 priors <- c(prior(normal(0, 10), class = "Intercept"),
@@ -386,14 +386,14 @@ summ_brms <- function(fit, label, thresholds) {
   mu
 }
 mu_post_l <- NA; mu_post_f <- NA; bayes_lean <- NULL; bayes_fat <- NULL
-cat("\n[brms Lean — fitting...]\n")
+cat("\n[brms Lean: fitting...]\n")
 bayes_lean <- tryCatch(fit_brms(lean_md_kg | se(lean_se_kg) ~ 1 + (1 | study_id)),
                        error = function(e) { cat("brms lean failed:", conditionMessage(e), "\n"); NULL })
 if (!is.null(bayes_lean)) {
   saveRDS(bayes_lean, "output/bayes/brms_bayes_lean.rds")
   mu_post_l <- summ_brms(bayes_lean, "Lean", c(0, -1, -2))
 }
-cat("\n[brms Fat — fitting...]\n")
+cat("\n[brms Fat: fitting...]\n")
 bayes_fat <- tryCatch(fit_brms(fat_md_kg | se(fat_se_kg) ~ 1 + (1 | study_id), seed_add = 1),
                       error = function(e) { cat("brms fat failed:", conditionMessage(e), "\n"); NULL })
 if (!is.null(bayes_fat)) {
@@ -401,7 +401,7 @@ if (!is.null(bayes_fat)) {
   mu_post_f <- summ_brms(bayes_fat, "Fat", c(0, -3, -5))
 }
 
-cat("\n[brms Prior sensitivity — Lean]\n")
+cat("\n[brms Prior sensitivity: Lean]\n")
 prior_sens_results <- data.frame()
 for (sc in c(0.5, 1.0, 2.0)) {
   cat(sprintf("\n  scale = %.1f ...\n", sc))
@@ -424,10 +424,10 @@ if (nrow(prior_sens_results) > 0) {
   write_csv(prior_sens_results, "output/tables/brms_prior_sensitivity_lean.csv")
 }
 
-# ---- 14. BAYESIAN — bayesmeta (cross-validation) ----
+# ---- 14. BAYESIAN: bayesmeta (cross-validation) ----
 
 cat("\n================================================================\n")
-cat("SECTION 14 — BAYESIAN CROSS-VALIDATION (bayesmeta)\n")
+cat("SECTION 14: BAYESIAN CROSS-VALIDATION (bayesmeta)\n")
 cat("================================================================\n")
 fit_bm <- function(y, s, label) {
   bm <- tryCatch(bayesmeta(y = y, sigma = s, labels = dat_primary$study_id,
@@ -441,7 +441,7 @@ fit_bm <- function(y, s, label) {
               bm$summary["95% upper", "mu"], bm$summary["mean", "tau"], bm$pposterior(mu = 0)))
   saveRDS(bm, sprintf("output/bayes/bayesmeta_%s.rds", tolower(label)))
   png(sprintf("output/figures/bayesmeta_%s.png", tolower(label)), width = 2400, height = 1800, res = 220)
-  tryCatch(plot(bm, which = 3, main = paste("bayesmeta —", label)),
+  tryCatch(plot(bm, which = 3, main = paste("bayesmeta:", label)),
            error = function(e) tryCatch(plot(bm), error = function(e2) plot.new()))
   dev.off()
   bm
@@ -466,7 +466,7 @@ if (!is.null(bayes_lean) && !is.null(bm_lean) && !is.null(bayes_fat) && !is.null
 # ---- 15. KEY RESULTS SUMMARY ----
 
 cat("\n================================================================\n")
-cat("SECTION 15 — KEY RESULTS SUMMARY\n")
+cat("SECTION 15: KEY RESULTS SUMMARY\n")
 cat("================================================================\n")
 extract <- function(m, outcome, group) {
   if (is.null(m)) return(NULL)
@@ -516,7 +516,7 @@ write_csv(key_results, "output/tables/key_results.csv")
 # ---- 16. SESSION INFO ----
 
 cat("\n================================================================\n")
-cat("SECTION 16 — SESSION INFO\n")
+cat("SECTION 16: SESSION INFO\n")
 cat("================================================================\n")
 print(sessionInfo())
 cat("\nALL ANALYSES COMPLETE. Output: ./output/\n")

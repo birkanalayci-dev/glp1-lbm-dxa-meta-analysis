@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 2 — September 2026 (revision for BMC Endocrine Disorders)
+## Version 2, September 2026 (revision for BMC Endocrine Disorders)
 
 ### Data (`data_raw.csv`)
 - STEP-1 lean MD: −1.79 (SE 0.35) → **−3.43 kg (SE 0.666)**. Source: Wilding 2021 NEJM Supplementary Table S5, treatment-policy estimand, change in total lean body mass in kg (semaglutide −5.26, placebo −1.83, ETD −3.43 [−4.74, −2.13]). The kg ETD had been mistaken for a percentage-point value and multiplied by baseline lean mass (52.1 kg).
@@ -27,5 +27,8 @@
 ### Post-release note (7 September 2026, main branch only)
 - `data_raw.csv` and `README.md`: the source note for SURMOUNT-1 now points to the Results text and Figure S2 of Look 2025 (absolute-kg treatment differences) instead of "Fig. 1" (which shows percentage changes). Values unchanged. The Zenodo v2.0 archive carries the earlier wording.
 
-## Version 1 — March 2026
+### Post-release note (9 September 2026, main branch only)
+- Typographic normalization: em dashes replaced by colons, commas or semicolons in `README.md`, `CHANGELOG.md`, `search_strategies.md` ("n/a" in table cells), the console messages of `glp1_dxa_meta_v1_2.R`, the comments of `revision_analyses.R`, the two console logs, and the titles of `output/figures/doi_*.png` and `bayesmeta_*.png` ("Doi plot: Lean", "bayesmeta: Lean"). No data, code logic or results changed. The Zenodo v2.0 archive carries the earlier punctuation.
+
+## Version 1, March 2026
 - Initial deposit (Python analysis with DerSimonian–Laird primary model and R cross-validation scripts; data as extracted in March 2026).

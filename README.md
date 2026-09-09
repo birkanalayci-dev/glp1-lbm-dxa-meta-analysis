@@ -1,4 +1,4 @@
-# DXA-measured body composition effects of GLP-1 and dual GIP/GLP-1 receptor agonists — analysis code and data
+# DXA-measured body composition effects of GLP-1 and dual GIP/GLP-1 receptor agonists: analysis code and data
 
 Systematic review and meta-analysis of phase 3 randomized trials with DXA-derived lean body mass and fat mass in adults with obesity or type 2 diabetes.
 
@@ -7,7 +7,7 @@ Systematic review and meta-analysis of phase 3 randomized trials with DXA-derive
 **Manuscript:** under peer review at *BMC Endocrine Disorders* (submission 69e5b6d9; revised version September 2026)  
 **Archive:** Zenodo concept DOI 10.5281/zenodo.19158245 (resolves to the latest version; this release = version 2.0, archived automatically from the GitHub release v2.0)
 
-## Version 2 (September 2026) — what changed
+## Version 2 (September 2026): what changed
 
 During peer review all extracted values were re-verified against the primary source tables. Three lean-mass values in version 1 were incorrect and have been corrected (see `CHANGELOG.md` and `data_raw_v1_submitted.csv` for the superseded values):
 

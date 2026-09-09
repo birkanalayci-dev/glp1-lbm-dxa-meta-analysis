@@ -57,7 +57,7 @@ The three strategies above were re-run with `OR "orforglipron"[All Fields]` (Pub
 | PubMed (records created 23 March – 4 September 2026) | 32 | 32 | 2 | 0 |
 | Cochrane CENTRAL (trials added March – September 2026) | 89 | 89 | 2 | 0 |
 | Scopus (PUBYEAR > 2025) | 48 | 41 | 2 | 0 |
-| ClinicalTrials.gov (results first posted after 23 March 2026) | 0 | — | — | 0 |
+| ClinicalTrials.gov (results first posted after 23 March 2026) | 0 | n/a | n/a | 0 |
 | **Subtotal, 4 September 2026** | **169** | **146 unique** (7 already in the March set; 16 duplicates across databases) | **4 unique** | **0** |
 | Web of Science Core Collection (6 September 2026; Table S3e) | 479 | 324 (128 in the March set; 27 in the 4 September set) | 3 | 0 |
 | **Total, update searches** | **648** | **470** | **7** | **0** |

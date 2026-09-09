@@ -1,12 +1,12 @@
 # =============================================================================
-# revision_analyses.R  —  BMC Endocrine Disorders revision (Sept 2026)
+# revision_analyses.R: BMC Endocrine Disorders revision (Sept 2026)
 # Companion to glp1_dxa_meta_v1_1.R. Run from the project folder (C:/R DXA).
 #
 # Produces, into output/revision/:
 #   R1  t2d_prediction_interval.csv      (R3 major #3)
 #   R2  loo_hksj_lean.csv / loo_hksj_fat.csv   (R3 major #4; supplement LOO
 #                                          tables currently show DL values)
-#   R3  (consistency assertions only — the STEP-1 conversion no longer exists,
+#   R3  (consistency assertions only; the STEP-1 conversion no longer exists,
 #        see 02_extraction_verification.md)
 #   R4  primary_excluding_step1.csv      (R3 major #4: k = 4 sensitivity)
 #   R5  lean_fraction_descriptive.csv    (R3 major #9: descriptive ratio only)
@@ -46,7 +46,7 @@ fmt <- function(x, d = 2) formatC(x, format = "f", digits = d)
 # -----------------------------------------------------------------------------
 # R1. Prediction intervals for the T2D subgroup (and overall, for reference)
 #     metafor::predict() uses t with k-2 df for the PI under test = "knha".
-#     With k = 3 the PI has 1 df and will be very wide — that is the point.
+#     With k = 3 the PI has 1 df and will be very wide; that is the point.
 # -----------------------------------------------------------------------------
 cat("\n==== R1: prediction intervals ====\n")
 pi_row <- function(m, label) {
@@ -95,7 +95,7 @@ write.csv(loo_lean, "output/revision/loo_hksj_lean.csv", row.names = FALSE)
 write.csv(loo_fat,  "output/revision/loo_hksj_fat.csv",  row.names = FALSE)
 
 # -----------------------------------------------------------------------------
-# R3. STEP-1 conversion — NO LONGER APPLICABLE (3 Sept 2026)
+# R3. STEP-1 conversion: NO LONGER APPLICABLE (3 Sept 2026)
 #     Re-verification showed Wilding 2021 Table S5 reports the LBM change in kg
 #     directly (ETD -3.43 [-4.74; -2.13]); the submitted value (-1.79) came from
 #     treating that kg ETD as percentage points. data_raw.csv now carries the
@@ -116,7 +116,7 @@ cat("Corrected lean values present.\n")
 # R4. Sensitivity excluding STEP-1 (k = 4), both outcomes, HKSJ-REML.
 #     Same numbers as the LOO row, but reported as its own named analysis
 #     because the reviewer asked for it explicitly. Obesity subgroup becomes
-#     k = 1 (SURMOUNT-1 only) — report descriptively, do not pool.
+#     k = 1 (SURMOUNT-1 only): report descriptively, do not pool.
 # -----------------------------------------------------------------------------
 cat("\n==== R4: primary excluding STEP-1 ====\n")
 d_no_step1 <- dat_primary %>% filter(study_id != "STEP-1")
@@ -138,7 +138,7 @@ print(rma(yi = d_no_step1$lean_md_kg, vi = d_no_step1$lean_vi, method = "DL"))
 print(rma(yi = d_no_step1$fat_md_kg,  vi = d_no_step1$fat_vi,  method = "DL"))
 
 # -----------------------------------------------------------------------------
-# R5. Lean fraction — DESCRIPTIVE ONLY (R3 major #9).
+# R5. Lean fraction: DESCRIPTIVE ONLY (R3 major #9).
 #     Ratio of pooled point estimates; no CI. State in Methods that it is a
 #     ratio of trial-level pooled estimates, not a patient-level quantity, and
 #     that lean and fat estimates are correlated within trials.
@@ -156,7 +156,7 @@ print(r5, digits = 3)
 write.csv(r5, "output/revision/lean_fraction_descriptive.csv", row.names = FALSE)
 
 # -----------------------------------------------------------------------------
-# R5b. OPTIONAL — only if you decide to KEEP an interval for the lean fraction.
+# R5b. OPTIONAL: only if you decide to KEEP an interval for the lean fraction.
 #      This is what the submitted "bootstrap" actually was: a parametric
 #      Monte Carlo simulation from the fitted random-effects models. If kept,
 #      Methods must say exactly that, and it must be labelled post hoc.
