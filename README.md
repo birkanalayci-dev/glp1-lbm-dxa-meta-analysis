@@ -9,7 +9,7 @@ Systematic review and meta-analysis of phase 3 randomized trials with DXA-derive
 
 ## Version 2.1 (September/October 2026): what changed
 
-Second revision for *BMC Endocrine Disorders* (Reviewer 3, round 2). No extracted value changed. The analysis was simplified and the presentation made more conservative:
+Second revision for *BMC Endocrine Disorders* (Reviewer 3, round 2). No outcome value changed. The analysis was simplified and the presentation made more conservative:
 
 - **Principal presentation is now stratified** (placebo-controlled trials in obesity, k = 2; active-comparator trials in type 2 diabetes, k = 3); the five-trial pooled estimate is reported as a secondary descriptive summary (`output/figures/forest_*_stratified.png`).
 - **Withdrawn:** meta-regression, Egger and Begg tests, the Doi plot and LFK index, and the pooled lean proportion. Section 10 of the script now writes trial-level proportions only (`output/tables/lean_proportion_trial_level.csv`).
@@ -19,7 +19,7 @@ Second revision for *BMC Endocrine Disorders* (Reviewer 3, round 2). No extracte
 - **Searches for unpublished DXA outcomes** (ClinicalTrials.gov outcome fields, EU Clinical Trials Register, CTIS, Novo Nordisk trial-document repository; sponsor correspondence): `searches/`.
 - **Independent human audit** of every value entering the meta-analysis (Dr. Nur İlayda Genç, Koç University Hospital, 27 September 2026): `audit/` (extraction table as returned and signed auditor statement; 19 values, no discrepancy).
 - Script `glp1_dxa_meta_v1_3.R` replaces `glp1_dxa_meta_v1_2.R`; `refresh_forests_v1_3.R` re-renders the forest plots without re-running Stan. `revision_analyses.R` v2 drops the pooled lean-fraction block.
-- `data_raw.csv`: the LEAD-3 source note now states that premature termination visits were carried forward (Jendle 2009); no value changed.
+- `data_raw.csv`: the LEAD-3 source note now states that premature termination visits were carried forward (Jendle 2009); no outcome value changed. The SUSTAIN-8 sample sizes were revised from 53/61 (observed end-of-treatment scans) to 88/90 (DXA analysis set of the confirmatory analysis); n is not used in any estimate.
 
 ## Version 2 (September 2026): what changed
 
