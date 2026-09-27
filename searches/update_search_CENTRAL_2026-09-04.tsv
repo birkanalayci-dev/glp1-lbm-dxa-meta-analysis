@@ -1,0 +1,90 @@
+no	title	source	added	decision (BA and ÖZG)
+1	GLP-1 Agonists for Lung Function Improvement and Muscle Restoration in COPD (NCT07747805)	CT.gov	Aug 2026	registry record; ongoing; COPD
+2	GLP-1 RA Therapy and Exercise Training in People With Obesity (NCT07091500)	CT.gov	Jul 2026	registry record; ongoing; exercise co-intervention
+3	Lifestyle App (DEX-1-OB) with GLP-1/GIP Therapy in Obesity (KCT0012263)	ICTRP	Aug 2026	registry record; app co-intervention
+4	PG-102 GLP-1/GLP-2 bispecific agonist in T2D (Diabetes 2026 abstract)	Embase	Aug 2026	conference abstract; unapproved molecule
+5	Adipose remodeling with enhanced incretin agonists (NCT07589322)	CT.gov	Jul 2026	registry record; observational
+6	Retatrutide-induced weight loss and body composition (Obesity 2023 abstract)	Embase	Apr 2026	conference abstract; unapproved molecule
+7	Liraglutide IVF pregnancy rates PCOS (Diabetes 2018 abstract)	Embase	Apr 2026	conference abstract; PCOS/IVF
+8	GLP-1/GIP dual agonist + structured exercise on muscle morphology (NCT07609160)	CT.gov	Jun 2026	registry record; exercise co-intervention
+9	MWN109 triagonist in nonhuman primates (Diabetes 2025 abstract)	Embase	May 2026	preclinical
+10	Dietary counseling and exercise on GLP-1 (NCT07554417)	CT.gov	May 2026	registry record; co-intervention
+11	Multimodal imaging in NHPs (Diabetes 2026 abstract)	Embase	Aug 2026	preclinical
+12	Jensen 2026 Sports Med: physical fitness with exercise and GLP-1 RA (S-LiTE secondary)	PubMed	Mar 2026	secondary analysis of S-LiTE (already sensitivity set); functional outcomes only
+13	GLP-1 RA body composition and dietary protein (NCT07495904)	CT.gov	Apr 2026	registry record; ongoing
+14	EDICT: pioglitazone + exenatide vs conventional, body composition & BMD (Diabetes 2026 abstract)	Embase	Aug 2026	conference abstract; combination therapy; exenatide + pioglitazone not a GLP-1 RA vs comparator design
+15	Liraglutide 35-day crossover, lean/bone mass (Diabetes Res Clin Pract 2026)	PubMed	Mar 2026	35 days; crossover; not phase 3
+16	Obese rhesus monkeys semaglutide/bimagrumab/retatrutide (Diabetes 2026 abstract)	Embase	Aug 2026	preclinical
+17	Increased dietary protein during GLP-1 use (NCT07480109)	CT.gov	Apr 2026	registry record; co-intervention
+18	Weight rebound after GLP-1 RA discontinuation, gut microbiota (ChiCTR2600126537)	ICTRP	Jul 2026	registry record; post-discontinuation
+19	Bimagrumab cardiac safety in healthy older adults (JCEM 2026)	PubMed	Apr 2026	no incretin drug
+20	High-protein weight loss program (Diabetes 2026 abstract)	Embase	Aug 2026	no incretin drug intervention
+21	Akkermansia muciniphila and GLP-1 production (Gut Microbes 2026)	PubMed	Jun 2026	no incretin drug
+22	BC-006 INHBE siRNA FIH (Diabetes 2026 abstract)	Embase	Aug 2026	unrelated molecule; phase 1
+23	HRS9531 dual agonist PK modelling (Clin Pharmacol Ther 2025 abstract)	Embase	Apr 2026	unapproved molecule; PK
+24	CD81+ extracellular vesicles during weight regain (J Extracell Vesicles 2026)	Embase	Jul 2026	mechanistic; S-LiTE-derived
+25	Semaglutide cognitive function in HIV (Top Antivir Med 2025 abstract)	Embase	Jun 2026	HIV population; abstract
+26	Semaglutide + meal replacements in idiopathic intracranial hypertension (J Headache Pain 2026)	Embase	Aug 2026	IIH population; open-label; co-intervention
+27	BESGLPSM oat protein on GLP-1 secretion (ChiCTR2600120839)	ICTRP	Apr 2026	no incretin drug
+28	Tirzepatide and Muscle Outcomes in Obesity (NCT07373834)	CT.gov	Aug 2026	registry record; ongoing (check for posted results later)
+29	Changes in body composition during and after weight loss with tirzepatide (Yandle et al., Diabetes 2026 abstract)	Embase	Aug 2026	conference abstract without full publication; single-centre; not phase 3
+30	Transcutaneous auricular vagus nerve stimulation for poor response to incretins (NCT07619989)	CT.gov	Jun 2026	registry record; device
+31	Semaglutide + lifestyle in breast cancer survivors (NCT07769047)	CT.gov	Aug 2026	registry record; oncology population
+32	LEAN-PREP protocol (BMJ Open 2026)	PubMed	May 2026	protocol; co-intervention
+33	Resistance exercise during GLP-1 RA (NCT07457437)	CT.gov	Apr 2026	registry record; co-intervention
+34	Feng et al. liraglutide/metformin/gliclazide NAFLD (Diabetes 2018 abstract)	Embase	Apr 2026	abstract of Feng 2019 (already excluded, Table S4)
+35	Semaglutide + metformin gut health (RBR-6pjdr2r)	ICTRP	Apr 2026	registry record; open-label
+36	NA-931 ± oral semaglutide phase 3 protocol (Diabetes 2026 abstract)	Embase	Aug 2026	unapproved molecule; protocol abstract
+37	DUET-Beta dulaglutide vs trelagliptin beta-cell (Diabetes 2018 abstract)	Embase	Apr 2026	abstract; no body composition
+38	HIIT modes appetite hormones (Health Sci Rep 2026)	PubMed/Embase	May 2026	no incretin drug
+39	Trevogrumab ± garetosmab on semaglutide (COURAGE; Diabetes 2026 abstract)	Embase	Aug 2026	phase 2; co-intervention; abstract
+40	OBESIAL real-world programme (NCT07779343)	CT.gov	Aug 2026	registry record; observational
+41	LUM-201 + semaglutide preclinical/rationale (Diabetes 2026 abstract)	Embase	Aug 2026	preclinical
+42	Testosterone undecanoate add-on to tirzepatide pilot (Minerva Endocrinol 2026)	PubMed/Embase	Apr 2026	pilot; co-intervention; hypogonadal men
+43	Semaglutide epigenetic aging in HIV lipohypertrophy (Nat Commun 2026)	PubMed	May 2026	HIV population; not body composition endpoint
+44	Tirzepatide real-world Paraguay (NCT07588438)	CT.gov	May 2026	registry record; observational
+45	Nutritional formula during caloric restriction (NCT07447843)	CT.gov	Mar 2026	no incretin drug
+46	SMART trial: semaglutide body composition and GFR (CJASN 2026)	PubMed	Jul 2026	FULL TEXT -> exclude: not phase 3 (investigator-initiated); CKD population; 24 wk
+47	Tirzepatide effect on food intake (Int J Obes 2024 abstract)	Embase	Mar 2026	abstract; not body composition
+48	Tirzepatide diabetic neuropathy (NCT07706088)	CT.gov	Jul 2026	registry record; neuropathy endpoint
+49	SMART trial (Embase duplicate of #46)	Embase	May 2026	duplicate of #46
+50	Dietary macronutrients and gut microbiota (NCT07672691)	CT.gov	Jul 2026	no incretin drug
+51	Preoperative tirzepatide/ketogenic diet before gastric bypass (NCT07622992)	CT.gov	Jun 2026	registry record; pre-bariatric; short-term
+52	Orlistat + liraglutide in MASLD (Diabetes 2026 abstract)	Embase	Aug 2026	abstract; combination therapy
+53	Allulose vs aspartame GLP-1 profiles protocol (JMIR Res Protoc 2026)	PubMed	Mar 2026	no incretin drug
+54	Tirzepatide ± structured exercise, inflammation imaging (ACTRN12626000749303)	ICTRP	Jul 2026	registry record; ongoing
+55	Vertical sleeve gastrectomy youth T2D (Obesity 2026)	PubMed/Embase	Mar 2026	surgery; youth; no incretin drug
+56	GLP-1s in hip and knee arthroplasty (NCT07755085)	CT.gov	Aug 2026	registry record; surgical population
+57	Diet and WB-EMS in obesity (NCT07562724)	CT.gov	May 2026	no incretin drug
+58	COURAGE Z-scores analysis (Diabetes 2026 abstract)	Embase	Aug 2026	phase 2; co-intervention; abstract
+59	Mazdutide in T2D + NAFLD after semaglutide (NCT07713992)	CT.gov	Jul 2026	registry record; unapproved molecule
+60	Metaberine vs placebo healthy adults (CTRI/2026/07/113529)	ICTRP	Aug 2026	no incretin drug
+61	Pemvidutide central adiposity MRI (Diabetes 2025 abstract)	Embase	May 2026	unapproved molecule; MRI
+62	Probiotics appetite regulation (NCT07715955)	CT.gov	Jul 2026	no incretin drug
+63	Ultra-processed vs minimally processed diets (ChiCTR2600126822)	ICTRP	Jul 2026	no incretin drug
+64	Oral-SAGE encapsulated oral semaglutide (ACTRN12626000199314)	ICTRP	Mar 2026	registry record; PK/gastric emptying
+65	EMBRAZE apitegromab + tirzepatide (Nat Med 2026)	PubMed	Jun 2026	FULL TEXT -> exclude: phase 2; apitegromab co-intervention
+66	Paradoxical glucose rise low-carbohydrate diet (NCT07713316)	CT.gov	Jul 2026	no incretin drug
+67	eHealth lifestyle HFpEF (NCT07661732)	CT.gov	Jun 2026	no incretin drug
+68	Metabolic flexibility during energy deficit (NCT07429058)	CT.gov	Mar 2026	no incretin drug
+69	Time-restricted eating heart failure (ChiCTR2600128114)	ICTRP	Aug 2026	no incretin drug
+70	Semaglutide after sleeve gastrectomy, non-randomized (Obes Surg 2026)	PubMed/Embase	Jun 2026	non-randomized; post-bariatric
+71	Bitter hop nutraceutical (Obesity Pillars 2026)	PubMed	Aug 2026	no incretin drug
+72	TLC-6740 + tirzepatide phase 2a (Diabetes 2026 abstract)	Embase	Aug 2026	phase 2a; unapproved co-intervention
+73	Energy restriction + probiotics (Clin Nutr ESPEN 2026)	PubMed	Jul 2026	no incretin drug
+74	Polydextrose gummies (NCT07758387)	CT.gov	Aug 2026	no incretin drug
+75	CHIP lifestyle programme pilot T2D (Pilot Feasibility Stud 2026)	PubMed	May 2026	no incretin drug intervention
+76	LAE102 + tirzepatide (NCT07671391)	CT.gov	Jul 2026	registry record; unapproved co-intervention
+77	HMB + vitamin D with semaglutide in older adults (NCT07760948)	CT.gov	Aug 2026	registry record; co-intervention
+78	SEMAFORCRANIO semaglutide hypothalamic obesity children (CTIS2024-511114-20-00)	ICTRP	May 2026	paediatric; hypothalamic obesity
+79	VLED vs Mediterranean diet MASLD (J Gastroenterol Hepatol 2024 abstract)	Embase	Mar 2026	no incretin drug
+80	AI lifestyle vs tirzepatide (NCT07697391)	CT.gov	Jul 2026	registry record; non-pharmacological comparator
+81	CLARA GLP-1/GIP RA in breast cancer (NCT07676331)	CT.gov	Jul 2026	registry record; oncology
+82	Tirzepatide in type 1 diabetes closed loop (NCT07284511)	CT.gov	Jun 2026	type 1 diabetes
+83	Nutrition therapy + liraglutide (ChiCTR2600119146)	ICTRP	May 2026	registry record; co-intervention
+84	Semaglutide in obese asthma design (JACI Global 2026)	PubMed	Apr 2026	design paper; asthma
+85	Tirzepatide + metformin in PCOS, short-term open-label RCT (DOM 2026)	PubMed	Jun 2026	PCOS; open-label; combination; short-term
+86	Semaglutide in schizophrenia on clozapine/olanzapine, open-label (Schizophr Res 2026)	PubMed	Jul 2026	psychiatric population; open-label; single-arm phase
+87	RESIST resistance training with tirzepatide (CTIS2026-526200-69-00)	ICTRP	Aug 2026	registry record; co-intervention
+88	SAMUEL OSA in older adults (CTIS2026-525500-10-00)	ICTRP	Jul 2026	registry record; OSA
+89	Accelerated HbA1c reduction T2D + hypertension (Curr Dev Nutr 2026 abstract)	Embase	Aug 2026	abstract; no incretin drug

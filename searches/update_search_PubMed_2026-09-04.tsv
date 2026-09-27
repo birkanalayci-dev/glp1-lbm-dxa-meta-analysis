@@ -1,0 +1,33 @@
+pmid	pubdate	journal	title	decision (BA and ÖZG)
+42654234	2026 Aug 14	Nutrients	Beyond Weight Loss: Skeletal Muscle Health During Incretin-Based Therapy in Patients with Diabesity.	exclude: review
+42644866	2026 Sep	Obesity (Silver Spring)	Body Composition and Lifestyle Interventions in Pharmacological Treatment of Acquired Hypothalamic Obesity: A Systematic Review of Randomized Controlled Trials.	exclude: SR, hypothalamic obesity
+42633920	2026 Aug 21	Biosci Trends	Immunometabolic reprogramming via GLP-1 receptor agonists in people with HIV: A multidimensional systemic framework.	exclude: review (HIV)
+42590128	2026 Aug 3	J Clin Med	Anti-Obesity Medications in Longevity and Aesthetic Medicine.	exclude: review
+42588312	2026 Aug 1	Healthcare (Basel)	Structured Exercise During and After Incretin-Based Pharmacotherapy Discontinuation: A Narrative Review of Mechanisms, Evidence, and Prescription Guidance.	exclude: narrative review
+42444070	2026 Sep	Obes Rev	Comparative Efficacy of GLP-1 Receptor Agonists, Exercise, and Their Combination on Body Composition and Glucolipid Metabolism in Adults With Overweight or Obesity: A Network Meta-Analysis of Randomized Controlled Trials.	exclude: SR/NMA
+42419792	2026 Jul 8	BMJ	Comparative effects of drugs for adults with overweight or obesity: systematic review and network meta-analysis.	exclude: SR/NMA (BMJ)
+42405390	2026 Jul 2	Endocr Metab Immune Disord Drug Targets	Semaglutide and Musculoskeletal Health: A Mendelian Randomization Study Based on GLP-1 Receptor Expression.	exclude: Mendelian randomisation
+42367464	2026 May	Cureus	Nutritional Care for Adults With Obesity Treated With Glucagon-Like Peptide (GLP)-1 and Dual Glucose-Dependent Insulinotropic Polypeptide (GIP)/GLP-1 Receptor Agonists: A Review of Evidence, Gaps, and Clinical Implications.	exclude: review
+42343233	2026 Dec 31	Gut Microbes	Effect of pasteurized Akkermansia muciniphila MucT on insulin sensitivity, body composition, and GLP-1 production in subjects with metabolic syndrome: impact of low baseline gut Akkermansia levels.	exclude: probiotic RCT, no incretin drug
+42329656	2026 Jun 22	JAMA Pediatr	Obesity Management Pharmacotherapies and Lifestyle Treatment for Pediatric Obesity Management: A Systematic Review and Network Meta-Analysis.	exclude: paediatric SR/NMA
+42324178	2026 Sep	Diabetes Obes Metab	Effects of Incretin-Based Therapies, Diet and Exercise Interventions, and Bariatric Surgery on Fat-Free Mass in Adults With Overweight or Obesity: A Systematic Review and Meta-Analysis.	exclude: SR/MA (fat-free mass)
+42321502	2026 Aug	Int J Obes (Lond)	Effect of GLP-1 receptor agonists at doses for obesity management on muscle health: systematic review and meta-analysis of randomized controlled trials (RCTs).	exclude: SR/MA (Laverde 2026)
+42319968	2026 Jul	Diabetes Metab Res Rev	The Effects of Glucagon-Like Peptide-1 Receptor Agonists and Sodium-Glucose Co-Transporter-2 Inhibitors on Lean Body Mass in Humans: A Systematic Review and Meta-Analysis of Randomised Controlled Trials.	exclude: SR/MA (GLP-1 RA & SGLT2i on lean mass)
+42308057	2026 Jul 1	Clin J Am Soc Nephrol	Effects of Semaglutide on Body Composition and GFR: A Prespecified Analysis of the SMART Trial.	FULL TEXT: SMART trial (semaglutide vs placebo, CKD + overweight/obesity, 24 wk, DXA) -> exclude: not phase 3; population defined by CKD
+42304171	2026 Sep	Diabetes Obes Metab	Comparative Effects of Antidiabetic Drugs on Body Composition: A Systematic Review and Network Meta-Analysis.	exclude: SR/NMA (antidiabetic drugs)
+42280404	2026 May 30	Nutrients	Adherence and Persistence with GLP-1-Based Therapies: International Real-World Evidence and the Role of Nutritional and Lifestyle Support-A Narrative Review.	exclude: real-world adherence review
+42260100	2026 Jul	Nat Med	Apitegromab for lean mass preservation during tirzepatide-induced weight loss: a randomized, double-blind, placebo-controlled phase 2 trial.	FULL TEXT: EMBRAZE (apitegromab + tirzepatide) -> exclude: phase 2; co-intervention
+42209204	2026 Aug	Diabetes Obes Metab	Comparative Effects of Individual Glucagon-Like Peptide-1 Receptor Agonist-Based Medications on Direct Measurement of Body Composition Among Adults With Overweight or Obesity With or Without Type 2 Diabetes: A Systematic Review and Network Meta-Analysis of Randomised Controlled Trials.	exclude: SR/NMA (direct body composition, individual GLP-1 RAs)
+42183911	2026 May 25	Curr Atheroscler Rep	To Reenvision and Redefine: Considering the Role of Lifestyle Interventions in the New Era of Second-Generation Obesity Management Medications.	exclude: review
+42174244	2026 Jul	Obes Surg	Early Adjuvant Treatment with Semaglutide After Sleeve Gastrectomy in Patients with Class II-III Obesity: A Prospective Non-Randomized Controlled Study.	exclude: prospective cohort after sleeve gastrectomy; not RCT
+42147626	2026 Apr	Cureus	Effects of Tirzepatide on Body Composition, Metabolic Parameters, and Sleep Outcomes: A Real-World One-Year Prospective Study.	exclude: real-world prospective cohort
+42124875	2026 May	Health Sci Rep	Effect of Different Modes of High Intensity Interval Training on Appetite-Related Hormones, Appetite Percepti	exclude: HIIT RCT, no incretin drug
+42094035	2026 May 1	Diabetes Metab Syndr Obes	Effects of exercise combined with pharmacotherapy on body composition... meta-analysis and network pharmacology	exclude: meta-analysis + network pharmacology
+42037905	2026 Mar 23	Cureus	Testosterone replacement therapy to preserve lean mass in men on GLP-1 RAs: narrative review	exclude: narrative review
+42037117	2026 Apr 27	Diabetes Obes Metab	Dietary strategies and nutritional management in patients receiving GLP-1 and dual GIP/GLP-1 RAs: systematic review	exclude: SR (dietary strategies)
+42036071	2026 Apr 24	Clin Nutr ESPEN	Medical nutrition in the GLP-1 era: protein strategies... (review)	exclude: review
+42020128	2026 Apr 22	BMJ Open	LEAN-PREP study: protocol for an RCT (resistance exercise + protein during semaglutide/tirzepatide)	exclude: protocol (LEAN-PREP)
+41996180	2026 Apr 17	Ann Intern Med	Batsis: Effect of incretin-based and nonpharmacologic weight loss on body composition: systematic review	exclude: SR (Batsis 2026)
+41978142	2026 Mar 29	Nutrients	Fat-free mass preservation and glycaemic markers during tirzepatide: secondary exploratory analysis (observational)	exclude: observational secondary analysis
+41909366	2026 Feb 25	Cureus	Weight regain after GLP-1 discontinuation (editorial)	exclude: editorial
+41877354	2026 Mar 24	Diabetes Obes Metab	Eisa: Lean mass changes with incretin therapy vs lifestyle: SR/MA	exclude: SR/MA (Eisa 2026)

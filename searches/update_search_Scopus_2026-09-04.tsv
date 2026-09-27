@@ -1,0 +1,49 @@
+no	title (short)	source	decision (BA and ÖZG)
+1	Preserving the metabolic engine: muscle as therapeutic target (Curr Cardiol Rep 2026)	review	exclude: review
+2	MC3R/MC4R dual activation in primates (Nat Commun 2026)	preclinical	exclude: preclinical
+3	Real-world tirzepatide prospective study (Clin Nutr ESPEN 2026)	cohort	exclude: non-randomized
+4	Semaglutide in schizophrenia, open-label (Schizophr Res 2026)	open-label	exclude: psychiatric population; single-arm phase
+5	Body composition/bone in T1D on GLP-1 RAs (Diabetes Metab Res Rev 2026)	cohort	exclude: type 1 diabetes; observational
+6	Tirzepatide ≥65 y post hoc SURMOUNT/SUMMIT (DOM 2026)	post hoc	exclude: secondary report of included/ineligible trials; no new DXA comparison
+7	Aerobic exercise sRAGE in T2D (DOM 2026)	RCT	exclude: no incretin drug
+8	Bimagrumab cardiac safety (JCEM 2026)	RCT	exclude: no incretin drug
+9	Imaging-derived sarcopenic obesity and CV outcomes (JACC 2026)	cohort	exclude: observational
+10	Mazdutide 9 mg in Chinese adults (JAMA 2026)	RCT	exclude: unapproved molecule (mazdutide)
+11	NMA of GLP-1 RA on body composition (DOM 2026)	SR/NMA	exclude: review
+12	Dulaglutide in multiple sclerosis (Neurol Ther 2026)	RCT	exclude: MS population; open-label proof of concept
+13	GLP-1 and paraspinal muscle, retrospective (HSS J 2026)	cohort	exclude: retrospective
+14	Tirzepatide + metformin in PCOS, short-term open-label (DOM 2026)	RCT	exclude: PCOS; combination; short-term; open-label
+15	SYNCHRONIZE-JP survodutide design (DOM 2026)	design	exclude: unapproved molecule; design paper
+16	TNF/IL-6 inhibitors and VAT in RA (Exp Physiol 2026)	RCT	exclude: no incretin drug
+17	Deoxypyridinoline urine test in GLP-1RA (Diagnostics 2026)	review	exclude: bone marker review
+18	EMBRAZE apitegromab + tirzepatide (Nat Med 2026)	RCT	exclude: phase 2; co-intervention
+19	Ethinyl estradiol in rats (Endocrinology 2026)	preclinical	exclude: preclinical
+20	Powdered meal replacement RCT (J Nutr 2026)	RCT	exclude: no incretin drug
+21	Eisa 2026 SR/MA lean mass incretin vs lifestyle (DOM 2026)	SR/MA	exclude: review
+22	Testosterone add-on to tirzepatide pilot (Minerva Endocrinol 2026)	pilot	exclude: pilot; co-intervention
+23	SEMASEARCH real-world design (DOM 2026)	design	exclude: observational design paper
+24	Sarcopenic obesity and falls in early-onset T2D (J Endocrinol Invest 2026)	cohort	exclude: observational
+25	Mazdutide 9 mg phase 2 (Med 2026)	RCT	exclude: unapproved molecule; phase 2
+26	GLP-1 RA muscle in MASLD SR (Liver Int 2026)	SR	exclude: review
+27	Tirzepatide in T1D protocol (BMJ Open 2026)	protocol	exclude: protocol; T1D
+28	VLEKD vs Mediterranean diet MASLD pilot (JHEP Rep 2026)	RCT	exclude: no incretin drug
+29	LEAN-PREP protocol (BMJ Open 2026)	protocol	exclude: protocol
+30	GLP-1 peptides in MC4R-deficient obesity (Int J Obes 2026)	preclinical	exclude: preclinical
+31	Renal fat fraction in T2D (J Clin Med 2026)	cohort	exclude: observational
+32	Metformin and HIIT insulin sensitivity (DOM 2026)	RCT	exclude: no incretin drug
+33	Liraglutide 35-day crossover (Diabetes Res Clin Pract 2026)	RCT	exclude: 35 days; crossover
+34	Bimagrumab + semaglutide phase 2 (Nat Med 2026)	RCT	exclude: phase 2; co-intervention
+35	Hemochromatosis case report	case	exclude: case report
+36	Liraglutide 18-day crossover (DOM 2026)	RCT	exclude: 18 days; crossover
+37	ACSL5 knockout mice (J Endocr Soc 2026)	preclinical	exclude: preclinical
+38	Body composition after bariatric surgery or GLP-1 RA (JAMA Netw Open 2026)	cohort	exclude: observational
+39	SEMALEAN: semaglutide 2.4 mg prospective single-arm, DXA (DOM 2026;28:112)	cohort	FULL TEXT -> exclude: single-arm prospective; no comparator; not phase 3
+40	Oral nutritional supplements in GLP-1 RA users, real-world (DMSO 2026)	cohort	exclude: observational
+41	Ma et al.: once-weekly semaglutide regional body composition, 12 wk (Metab Target Organ Damage 2026)	cohort	FULL TEXT -> exclude: retrospective cohort; 12 weeks; no comparator
+42	Cycling GLP-1 RA treatment (JCI Insight 2026)	preclinical	exclude: preclinical
+43	Radiological assessment narrative review (Univ Toronto Med J 2026)	review	exclude: review
+44	Semaglutide and taste in PCOS (JCEM 2026)	RCT	exclude: PCOS; taste outcome; short-term
+45	Skeletal muscle composition editorial (Radiology 2026)	editorial	exclude: editorial
+46	Ketone therapy semaglutide cardiac mass (Eur J Prev Cardiol 2026)	preclinical	exclude: preclinical
+47	Bifidobacterium in dogs (Animals 2026)	preclinical	exclude: animal
+48	SYNCHRONIZE-1 survodutide baseline characteristics (DOM 2026)	baseline	exclude: unapproved molecule; baseline paper
