@@ -2,11 +2,11 @@
 > cat("================================================================\n")
 ================================================================
 
-> cat("GLP-1/Dual Agonist DXA Meta-Analysis, v1.2 (revision)\n")
-GLP-1/Dual Agonist DXA Meta-Analysis, v1.2 (revision)
+> cat("GLP-1/Dual Agonist DXA Meta-Analysis, v1.3 (second revision)\n")
+GLP-1/Dual Agonist DXA Meta-Analysis, v1.3 (second revision)
 
 > cat("Run date:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n")
-Run date: 2026-09-04 15:50:34 
+Run date: 2026-09-27 18:52:04 
 
 > cat("R version:", R.version.string, "\n")
 R version: R version 4.6.0 (2026-04-24 ucrt) 
@@ -21,7 +21,7 @@ brms cores: 4
 > # ---- 1. DATA LOAD ----
 > 
 > dat_raw <- read_csv("data_raw.csv", show_col_types = FALSE)
-indexing data_raw.csv [==============================================================================] 57.50MB/s, eta:  0s                                                                                                                          
+indexing data_raw.csv [==============================================================================] 17.25MB/s, eta:  0s                                                                                                                          
 > dat <- dat_raw %>%
 +   mutate(
 +     population = case_when(
@@ -50,7 +50,7 @@ Primary studies (k=5):
   <chr>      <chr>    <chr>             <dbl> <dbl>  <dbl>      <dbl>      <dbl>     <dbl>     <dbl> <chr>      <chr>     
 1 SURMOUNT-1 Tirzepa… Placebo              72   124     36     -4.4        0.61     -12.3      1.40  obesity    dual_GIP_…
 2 STEP-1     Semaglu… Placebo              68    95     45     -3.43       0.666     -6.99     1.43  obesity    mono_GLP1 
-3 SUSTAIN-8  Semaglu… Canaglifl…           52    53     61     -0.78       0.421     -0.79     0.666 T2D        mono_GLP1 
+3 SUSTAIN-8  Semaglu… Canaglifl…           52    88     90     -0.78       0.421     -0.79     0.666 T2D        mono_GLP1 
 4 LEAD-2     Liraglu… Glimepiri…           26    30     32     -2.82       0.594     -3.53     0.841 T2D        mono_GLP1 
 5 LEAD-3     Liraglu… Glimepiri…           52    17     12     -0.956      0.888     -3.37     1.21  T2D        mono_GLP1 
 
@@ -491,146 +491,14 @@ Dual GIP/GLP-1: only SURMOUNT-1 (k=1), descriptive:
   <chr>           <dbl>      <dbl>     <dbl>     <dbl>
 1 SURMOUNT-1       -4.4       0.61     -12.3      1.40
 
-> # ---- 4. META-REGRESSION (exploratory, k=5) ----
+> # ---- 4. TAU^2 ESTIMATORS + PROFILE LIKELIHOOD ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 4: META-REGRESSION (Exploratory, k=5)\n")
-SECTION 4: META-REGRESSION (Exploratory, k=5)
-
-> cat("================================================================\n")
-================================================================
-
-> cat("\n[Lean] ~ duration_wks\n")
-
-[Lean] ~ duration_wks
-
-> print(rma(yi = lean_md_kg, vi = lean_vi, mods = ~ duration_wks, data = dat_primary, method = "REML", test = "knha"))
-
-Mixed-Effects Model (k = 5; tau^2 estimator: REML)
-
-tau^2 (estimated amount of residual heterogeneity):     2.4496 (SE = 2.3478)
-tau (square root of estimated tau^2 value):             1.5651
-I^2 (residual heterogeneity / unaccounted variability): 87.15%
-H^2 (unaccounted variability / sampling variability):   7.78
-R^2 (amount of heterogeneity accounted for):            0.00%
-
-Test for Residual Heterogeneity:
-QE(df = 3) = 26.9875, p-val < .0001
-
-Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 3) = 0.5416, p-val = 0.5151
-
-Model Results:
-
-              estimate      se     tval  df    pval    ci.lb   ci.ub    
-intrcpt        -0.6637  2.5875  -0.2565   3  0.8141  -8.8983  7.5708    
-duration_wks   -0.0338  0.0459  -0.7359   3  0.5151  -0.1800  0.1124    
-
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-
-> cat("\n[Lean] ~ drug_class\n")
-
-[Lean] ~ drug_class
-
-> print(rma(yi = lean_md_kg, vi = lean_vi, mods = ~ drug_class, data = dat_primary, method = "REML", test = "knha"))
-
-Mixed-Effects Model (k = 5; tau^2 estimator: REML)
-
-tau^2 (estimated amount of residual heterogeneity):     1.3986 (SE = 1.4804)
-tau (square root of estimated tau^2 value):             1.1826
-I^2 (residual heterogeneity / unaccounted variability): 79.11%
-H^2 (unaccounted variability / sampling variability):   4.79
-R^2 (amount of heterogeneity accounted for):            33.72%
-
-Test for Residual Heterogeneity:
-QE(df = 3) = 15.6927, p-val = 0.0013
-
-Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 3) = 2.6579, p-val = 0.2015
-
-Model Results:
-
-                     estimate      se     tval  df    pval    ci.lb    ci.ub    
-intrcpt               -4.4000  1.3158  -3.3440   3  0.0443  -8.5874  -0.2126  * 
-drug_classmono_GLP1    2.4041  1.4746   1.6303   3  0.2015  -2.2889   7.0971    
-
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-
-> cat("\n[Lean] ~ population\n")
-
-[Lean] ~ population
-
-> print(rma(yi = lean_md_kg, vi = lean_vi, mods = ~ population, data = dat_primary, method = "REML", test = "knha"))
-
-Mixed-Effects Model (k = 5; tau^2 estimator: REML)
-
-tau^2 (estimated amount of residual heterogeneity):     0.7184 (SE = 0.9138)
-tau (square root of estimated tau^2 value):             0.8476
-I^2 (residual heterogeneity / unaccounted variability): 65.55%
-H^2 (unaccounted variability / sampling variability):   2.90
-R^2 (amount of heterogeneity accounted for):            65.96%
-
-Test for Residual Heterogeneity:
-QE(df = 3) = 9.2637, p-val = 0.0260
-
-Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 3) = 6.6451, p-val = 0.0819
-
-Model Results:
-
-                   estimate      se     tval  df    pval    ci.lb   ci.ub    
-intrcpt             -1.5237  0.5874  -2.5941   3  0.0808  -3.3929  0.3456  . 
-populationobesity   -2.4067  0.9336  -2.5778   3  0.0819  -5.3778  0.5645  . 
-
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-
-> cat("\n[Fat] ~ duration_wks\n")
-
-[Fat] ~ duration_wks
-
-> print(rma(yi = fat_md_kg, vi = fat_vi, mods = ~ duration_wks, data = dat_primary, method = "REML", test = "knha"))
-
-Mixed-Effects Model (k = 5; tau^2 estimator: REML)
-
-tau^2 (estimated amount of residual heterogeneity):     14.0865 (SE = 12.5884)
-tau (square root of estimated tau^2 value):             3.7532
-I^2 (residual heterogeneity / unaccounted variability): 92.85%
-H^2 (unaccounted variability / sampling variability):   13.98
-R^2 (amount of heterogeneity accounted for):            22.31%
-
-Test for Residual Heterogeneity:
-QE(df = 3) = 50.8966, p-val < .0001
-
-Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 3) = 2.1701, p-val = 0.2371
-
-Model Results:
-
-              estimate      se     tval  df    pval     ci.lb    ci.ub    
-intrcpt         3.1729  5.9820   0.5304   3  0.6326  -15.8644  22.2102    
-duration_wks   -0.1577  0.1070  -1.4731   3  0.2371   -0.4983   0.1829    
-
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-
-
-> # ---- 5. TAU^2 ESTIMATORS + PROFILE LIKELIHOOD ----
-> 
-> cat("\n================================================================\n")
-
-================================================================
-
-> cat("SECTION 5: TAU^2 ESTIMATORS\n")
-SECTION 5: TAU^2 ESTIMATORS
+> cat("SECTION 4: TAU^2 ESTIMATORS\n")
+SECTION 4: TAU^2 ESTIMATORS
 
 > cat("================================================================\n")
 ================================================================
@@ -703,14 +571,14 @@ H^2     18.4131  6.4154 156.2222
 
 > write_csv(pl_tab, "output/tables/profile_likelihood_tau2.csv")
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> # ---- 6. RVE (CR2, LEAD-2/LEAD-3 as one cluster) ----
+> # ---- 5. RVE (CR2, LEAD-2/LEAD-3 as one cluster) ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 6: RVE WITH CR2 (LEAD-2/3 cluster)\n")
-SECTION 6: RVE WITH CR2 (LEAD-2/3 cluster)
+> cat("SECTION 5: RVE WITH CR2 (LEAD-2/3 cluster)\n")
+SECTION 5: RVE WITH CR2 (LEAD-2/3 cluster)
 
 > cat("================================================================\n")
 ================================================================
@@ -789,14 +657,14 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 > write_csv(rbind(rve_lean, rve_fat), "output/tables/rve_cr2.csv")
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> # ---- 7. THREE-LEVEL MODEL ----
+> # ---- 6. THREE-LEVEL MODEL ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 7: THREE-LEVEL MODEL\n")
-SECTION 7: THREE-LEVEL MODEL
+> cat("SECTION 6: THREE-LEVEL MODEL\n")
+SECTION 6: THREE-LEVEL MODEL
 
 > cat("================================================================\n")
 ================================================================
@@ -861,14 +729,14 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 > if (!is.null(tl_tab)) write_csv(tl_tab, "output/tables/three_level.csv")
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> # ---- 8. LEAVE-ONE-OUT (HKSJ-REML) ----
+> # ---- 7. LEAVE-ONE-OUT (HKSJ-REML) ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 8: LEAVE-ONE-OUT (HKSJ-REML)\n")
-SECTION 8: LEAVE-ONE-OUT (HKSJ-REML)
+> cat("SECTION 7: LEAVE-ONE-OUT (HKSJ-REML)\n")
+SECTION 7: LEAVE-ONE-OUT (HKSJ-REML)
 
 > cat("================================================================\n")
 ================================================================
@@ -881,103 +749,67 @@ SECTION 8: LEAVE-ONE-OUT (HKSJ-REML)
 > loo_lean <- loo_tab(m_lean_hksj, "Lean"); cat("\n[Lean]\n"); print(loo_lean)
 
 [Lean]
-  outcome    omitted        MD        SE     CI_lb      CI_ub     p_HKSJ     tau2       I2
-1    Lean SURMOUNT-1 -1.995900 0.6657854 -4.114727  0.1229262 0.05776947 1.398620 79.11098
-2    Lean     STEP-1 -2.253070 0.8577222 -4.982724  0.4765853 0.07854038 2.570308 87.94912
-3    Lean  SUSTAIN-8 -2.994832 0.6989956 -5.219348 -0.7703161 0.02336400 1.354343 74.92970
-4    Lean     LEAD-2 -2.401186 0.9061495 -5.284958  0.4825858 0.07700181 2.898390 88.53607
-5    Lean     LEAD-3 -2.810033 0.7773010 -5.283752 -0.3363145 0.03637226 2.164642 87.31067
+  outcome    omitted        MD        SE     CI_lb      CI_ub     p_HKSJ     tau2       I2 CI_includes_0
+1    Lean SURMOUNT-1 -1.995900 0.6657854 -4.114727  0.1229262 0.05776947 1.398620 79.11098          TRUE
+2    Lean     STEP-1 -2.253070 0.8577222 -4.982724  0.4765853 0.07854038 2.570308 87.94912          TRUE
+3    Lean  SUSTAIN-8 -2.994832 0.6989956 -5.219348 -0.7703161 0.02336400 1.354343 74.92970         FALSE
+4    Lean     LEAD-2 -2.401186 0.9061495 -5.284958  0.4825858 0.07700181 2.898390 88.53607          TRUE
+5    Lean     LEAD-3 -2.810033 0.7773010 -5.283752 -0.3363145 0.03637226 2.164642 87.31067         FALSE
 
 > loo_fat  <- loo_tab(m_fat_hksj,  "Fat");  cat("\n[Fat]\n");  print(loo_fat)
 
 [Fat]
-  outcome    omitted        MD       SE      CI_lb     CI_ub     p_HKSJ      tau2       I2
-1     Fat SURMOUNT-1 -3.474913 1.251918  -7.459073 0.5092475 0.06924001  5.036599 84.42539
-2     Fat     STEP-1 -4.905459 2.492560 -12.837898 3.0269790 0.14372093 23.310284 96.19022
-3     Fat  SUSTAIN-8 -6.468041 2.084400 -13.101532 0.1654511 0.05316799 15.740200 91.80119
-4     Fat     LEAD-2 -5.769939 2.498043 -13.719828 2.1799504 0.10405164 23.581976 94.95629
-5     Fat     LEAD-3 -5.791901 2.478070 -13.678227 2.0944253 0.10147422 23.248050 95.93017
+  outcome    omitted        MD       SE      CI_lb     CI_ub     p_HKSJ      tau2       I2 CI_includes_0
+1     Fat SURMOUNT-1 -3.474913 1.251918  -7.459073 0.5092475 0.06924001  5.036599 84.42539          TRUE
+2     Fat     STEP-1 -4.905459 2.492560 -12.837898 3.0269790 0.14372093 23.310284 96.19022          TRUE
+3     Fat  SUSTAIN-8 -6.468041 2.084400 -13.101532 0.1654511 0.05316799 15.740200 91.80119          TRUE
+4     Fat     LEAD-2 -5.769939 2.498043 -13.719828 2.1799504 0.10405164 23.581976 94.95629          TRUE
+5     Fat     LEAD-3 -5.791901 2.478070 -13.678227 2.0944253 0.10147422 23.248050 95.93017          TRUE
 
 > write_csv(loo_lean, "output/tables/loo_lean.csv")
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
 > write_csv(loo_fat,  "output/tables/loo_fat.csv")
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> # ---- 9. SMALL-STUDY EFFECTS (k=5: report as not assessable) ----
-> 
+> cat(sprintf("\nLean: HKSJ interval includes 0 in %d of %d leave-one-out analyses (%s).\n",
++             sum(loo_lean$CI_includes_0), nrow(loo_lean) .... [TRUNCATED] 
+
+Lean: HKSJ interval includes 0 in 3 of 5 leave-one-out analyses (SURMOUNT-1, STEP-1, LEAD-2).
+
+> cat(sprintf("Fat:  HKSJ interval includes 0 in %d of %d leave-one-out analyses.\n",
++             sum(loo_fat$CI_includes_0), nrow(loo_fat)))
+Fat:  HKSJ interval includes 0 in 5 of 5 leave-one-out analyses.
+
+> cat("This instability is reported in the manuscript as the main robustness finding.\n")
+This instability is reported in the manuscript as the main robustness finding.
+
+> # ---- 8. REPORTING BIAS ----
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 9: SMALL-STUDY EFFECTS (k=5, underpowered; descriptive only)\n")
-SECTION 9: SMALL-STUDY EFFECTS (k=5, underpowered; descriptive only)
+> cat("SECTION 8: REPORTING BIAS\n")
+SECTION 8: REPORTING BIAS
 
 > cat("================================================================\n")
 ================================================================
 
-> ssb <- function(m_dl, yi, vi, outcome) {
-+   eg <- regtest(m_dl, model = "lm"); bg <- ranktest(m_dl)
-+   cat(sprintf("\n[%s] Egger:\n", outcome)); p .... [TRUNCATED] 
+> cat("With k = 5, funnel-plot-based tests and asymmetry indices have no useful\n")
+With k = 5, funnel-plot-based tests and asymmetry indices have no useful
 
-> ssb_tab <- rbind(ssb(m_lean_dl, "lean_md_kg", "lean_vi", "Lean"),
-+                  ssb(m_fat_dl,  "fat_md_kg",  "fat_vi",  "Fat"))
+> cat("diagnostic performance and are not computed. Reporting bias is reported as\n")
+diagnostic performance and are not computed. Reporting bias is reported as
 
-[Lean] Egger:
+> cat("'not formally assessable' (v1.2 computed Egger, Begg and LFK; removed in v1.3).\n")
+'not formally assessable' (v1.2 computed Egger, Begg and LFK; removed in v1.3).
 
-Regression Test for Funnel Plot Asymmetry
-
-Model:     weighted regression with multiplicative dispersion
-Predictor: standard error
-
-Test for Funnel Plot Asymmetry: t = -0.8061, df = 3, p = 0.4792
-Limit Estimate (as sei -> 0):   b =  0.2489 (CI: -9.9358, 10.4337)
-
-
-[Lean] Begg:
-
-Rank Correlation Test for Funnel Plot Asymmetry
-
-Kendall's tau = -0.2000, p = 0.8167
-
-        LFK index test
-
-LFK index: -0.03 (no asymmetry)
-
-[Fat] Egger:
-
-Regression Test for Funnel Plot Asymmetry
-
-Model:     weighted regression with multiplicative dispersion
-Predictor: standard error
-
-Test for Funnel Plot Asymmetry: t = -2.8541, df = 3, p = 0.0649
-Limit Estimate (as sei -> 0):   b =  5.6547 (CI: -5.0610, 16.3704)
-
-
-[Fat] Begg:
-
-Rank Correlation Test for Funnel Plot Asymmetry
-
-Kendall's tau = -0.6000, p = 0.2333
-
-        LFK index test
-
-LFK index: -2.28 (major asymmetry)
-
-> print(ssb_tab)
-  outcome    egger_t    egger_p begg_tau    begg_p         LFK LFK_interpretation
-1    Lean -0.8060786 0.47917184     -0.2 0.8166667 -0.03288613       no asymmetry
-2     Fat -2.8540917 0.06489067     -0.6 0.2333333 -2.28466787    major asymmetry
-
-> write_csv(ssb_tab, "output/tables/small_study_effects.csv")
-wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> # ---- 10. EXPANDED INCLUSION ----
+> # ---- 9. EXPANDED INCLUSION ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 10: EXPANDED INCLUSION\n")
-SECTION 10: EXPANDED INCLUSION
+> cat("SECTION 9: EXPANDED INCLUSION\n")
+SECTION 9: EXPANDED INCLUSION
 
 > cat("================================================================\n")
 ================================================================
@@ -1078,54 +910,79 @@ estimate      se     tval  df    pval    ci.lb    ci.ub
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 
-> # ---- 11. LEAN SHARE OF POOLED LOSS (descriptive only) ----
+> # ---- 10. TRIAL-LEVEL LEAN PROPORTION (descriptive only; no pooled value) ----
 > 
-> cat("\n================================================================\n")
+> cat("\n======================================================== ..." ... [TRUNCATED] 
 
 ================================================================
 
-> cat("SECTION 11: LEAN SHARE OF POOLED LOSS (descriptive; no interval)\n")
-SECTION 11: LEAN SHARE OF POOLED LOSS (descriptive; no interval)
+> cat("SECTION 10: TRIAL-LEVEL LEAN PROPORTION OF THE TISSUE-MASS DIFFERENCE\n")
+SECTION 10: TRIAL-LEVEL LEAN PROPORTION OF THE TISSUE-MASS DIFFERENCE
 
 > cat("================================================================\n")
 ================================================================
 
 > frac <- function(l, f) abs(l) / (abs(l) + abs(f)) * 100
 
-> share_tab <- bind_rows(
-+   data.frame(level = "Pooled overall (k=5)", lean_pct = frac(m_lean_hksj$b[1], m_fat_hksj$b[1])),
-+   data.frame(level = " ..." ... [TRUNCATED] 
+> share_tab <- dat_primary %>%
++   transmute(study_id, lean_md_kg, fat_md_kg,
++             lean_pct_of_tissue_difference = round(frac(lean_md_kg, fat .... [TRUNCATED] 
 
 > print(share_tab)
-                 level lean_pct fat_per_kg_lean
-1 Pooled overall (k=5) 31.98584        2.126384
-2     Pooled T2D (k=3) 38.55508        1.593692
-3 Pooled obesity (k=2) 29.04883        2.442479
-4    Trial: SURMOUNT-1 26.34731        2.795455
-5        Trial: STEP-1 32.91747        2.037901
-6     Trial: SUSTAIN-8 49.68153        1.012821
-7        Trial: LEAD-2 44.36043        1.254261
-8        Trial: LEAD-3 22.11427        3.521967
+# A tibble: 5 × 4
+  study_id   lean_md_kg fat_md_kg lean_pct_of_tissue_difference
+  <chr>           <dbl>     <dbl>                         <dbl>
+1 SURMOUNT-1     -4.4      -12.3                           26.3
+2 STEP-1         -3.43      -6.99                          32.9
+3 SUSTAIN-8      -0.78      -0.79                          49.7
+4 LEAD-2         -2.82      -3.53                          44.4
+5 LEAD-3         -0.956     -3.37                          22.1
 
-> write_csv(share_tab, "output/tables/lean_share_descriptive.csv")
+> write_csv(share_tab, "output/tables/lean_proportion_trial_level.csv")
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> cat("Note: ratios of trial-level pooled point estimates; not patient-level; no interval reported.\n")
-Note: ratios of trial-level pooled point estimates; not patient-level; no interval reported.
+> cat("Note: trial-level ratios of the two treatment differences; descriptive only.\n")
+Note: trial-level ratios of the two treatment differences; descriptive only.
 
-> # ---- 12. FOREST PLOTS ----
+> cat("A pooled proportion is NOT computed (v1.2 reported 32%; removed in v1.3 because the\n")
+A pooled proportion is NOT computed (v1.2 reported 32%; removed in v1.3 because the
+
+> cat("two meta-analyses weight trials differently and the within-trial covariance is unknown).\n")
+two meta-analyses weight trials differently and the within-trial covariance is unknown).
+
+> # ---- 11. FOREST PLOTS ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 12: FOREST PLOTS\n")
-SECTION 12: FOREST PLOTS
+> cat("SECTION 11: FOREST PLOTS\n")
+SECTION 11: FOREST PLOTS
 
 > cat("================================================================\n")
 ================================================================
 
-> forest_one <- function(m, outfile, title_text, xlab_text, width = 2400, height = 1400) {
-+   png(outfile, width = width, height = height, res = 220) .... [TRUNCATED] 
+> # Axis limits and tick positions are fixed per outcome so that the ticks are
+> # round numbers. Polygons whose interval exceeds the axis limits are  .... [TRUNCATED] 
+
+> fmt1p <- function(x) sprintf("%.1f%%", unname(x))
+
+> het_label <- function(m, prefix = "") {
++   t2 <- fmt2(m$tau2); i2 <- fmt1p(m$I2)
++   if (m$k >= 3) {
++     p <- pi_of(m)
++     pi_txt <- sprintf("; ..." ... [TRUNCATED] 
+
+> axis_lean       <- list(alim = c(-8, 3),   at = seq(-8, 2, by = 2))
+
+> axis_lean_strat <- list(alim = c(-11, 3),  at = seq(-10, 2, by = 2))  # wide enough for the k = 2 stratum interval
+
+> axis_fat        <- list(alim = c(-20, 10), at = seq(-20, 10, by = 5))  # k = 2 fat stratum interval is truncated
+
+> # Plot limits: label column = 60% of the axis width to the left, annotation column = 32% to the right,
+> # so that study and stratum labels never ov .... [TRUNCATED] 
+
+> forest_one <- function(m, outfile, title_text, xlab_text, ax, width = 2400, height = 1500) {
++   png(outfile, width = width, height = height, res =  .... [TRUNCATED] 
 
 > forest_one(m_lean_hksj, "output/figures/forest_lean_overall.png",
 +            "Lean body mass, incretin therapy vs comparator (k = 5)", "Mean diffe ..." ... [TRUNCATED] 
@@ -1135,9 +992,9 @@ SECTION 12: FOREST PLOTS
 +            "Fat mass, incretin therapy vs comparator (k = 5)", "Mean difference (k ..." ... [TRUNCATED] 
   Saved: output/figures/forest_fat_overall.png 
 
-> forest_two <- function(m_a, m_b, lab_a, lab_b, outfile, xlab_text) {
-+   png(outfile, width = 2400, height = 1800, res = 220)
-+   par(mfrow = c(2, 1 .... [TRUNCATED] 
+> forest_two <- function(m_a, m_b, lab_a, lab_b, outfile, xlab_text, ax) {
++   png(outfile, width = 2400, height = 2000, res = 220)
++   par(mfrow = c( .... [TRUNCATED] 
 
 > if (!is.null(m_lean_t2d) && !is.null(m_lean_obesity))
 +   forest_two(m_lean_t2d, m_lean_obesity, "A. Type 2 diabetes (k = 3)", "B. Obesity (k = 2)", .... [TRUNCATED] 
@@ -1148,25 +1005,37 @@ SECTION 12: FOREST PLOTS
 +   .... [TRUNCATED] 
   Saved: output/figures/forest_fat_by_population.png 
 
+> # Stratum summary row: metafor polygon when the interval fits the axis; otherwise a
+> # diamond at the point estimate with the interval drawn as a l .... [TRUNCATED] 
+
+> # Fig. 3 of the manuscript (v1.3): stratified forest plot with the five-trial
+> # summary shown below the strata as a secondary descriptive summary. .... [TRUNCATED] 
+
+> forest_strat("lean", "output/figures/forest_lean_stratified.png", "Mean difference in lean body mass (kg)", axis_lean_strat)
+  Saved: output/figures/forest_lean_stratified.png 
+
+> forest_strat("fat",  "output/figures/forest_fat_stratified.png",  "Mean difference in fat mass (kg)", axis_fat)
+  Saved: output/figures/forest_fat_stratified.png 
+
 > if (!is.null(m_lean_act) && !is.null(m_lean_pbo))
 +   forest_two(m_lean_act, m_lean_pbo, "A. Active comparator (k = 3)", "B. Placebo (k = 2)",
 +     .... [TRUNCATED] 
   Saved: output/figures/forest_lean_by_comparator.png 
 
-> # ---- 13. BAYESIAN: brms ----
+> # ---- 12. BAYESIAN: brms ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 13: BAYESIAN RANDOM-EFFECTS (brms / Stan)\n")
-SECTION 13: BAYESIAN RANDOM-EFFECTS (brms / Stan)
+> cat("SECTION 12: BAYESIAN RANDOM-EFFECTS, SECONDARY COMPUTATIONAL SENSITIVITY (brms / Stan)\n")
+SECTION 12: BAYESIAN RANDOM-EFFECTS, SECONDARY COMPUTATIONAL SENSITIVITY (brms / Stan)
 
 > cat("================================================================\n")
 ================================================================
 
-> priors <- c(prior(normal(0, 10), class = "Intercept"),
-+             prior(cauchy(0, 1),  class = "sd"))
+> # Priors are stated in the units of the outcome (kg). mu ~ Normal(0, 10^2): a
+> # weakly informative prior placing 95% mass within +/- 20 kg. tau ~  .... [TRUNCATED] 
 
 > fit_brms <- function(formula, seed_add = 0) {
 +   brm(formula, data = dat_primary, prior = priors,
@@ -1262,41 +1131,44 @@ brms Fat posterior:
   P(mu < -3) = 0.8588
   P(mu < -5) = 0.5217
 
-> cat("\n[brms Prior sensitivity: Lean]\n")
+> cat("\n[12b. brms prior sensitivity, both outcomes]\n")
 
-[brms Prior sensitivity: Lean]
+[12b. brms prior sensitivity, both outcomes]
 
-> prior_sens_results <- data.frame()
+> prior_sens <- function(outcome, scales, seed_add) {
++   yi <- if (outcome == "Lean") "lean_md_kg" else "fat_md_kg"
++   se <- if (outcome == "Lean")  .... [TRUNCATED] 
 
-> for (sc in c(0.5, 1.0, 2.0)) {
-+   cat(sprintf("\n  scale = %.1f ...\n", sc))
-+   pr_sens <- c(prior(normal(0, 10), class = "Intercept"),
-+          .... [TRUNCATED] 
-
-  scale = 0.5 ...
-
-  scale = 1.0 ...
-
-  scale = 2.0 ...
+> prior_sens_results <- rbind(prior_sens("Lean", c(0.5, 1.0, 2.0), 0),
++                             prior_sens("Fat",  c(1.0, 2.0, 5.0), 1))
+  Lean, half-Cauchy scale = 0.5 ...
+  Lean, half-Cauchy scale = 1.0 ...
+  Lean, half-Cauchy scale = 2.0 ...
+  Fat, half-Cauchy scale = 1.0 ...
+  Fat, half-Cauchy scale = 2.0 ...
+  Fat, half-Cauchy scale = 5.0 ...
 
 > if (nrow(prior_sens_results) > 0) {
-+   cat("\nPrior sensitivity table (Lean):\n"); print(prior_sens_results)
-+   write_csv(prior_sens_results, "out ..." ... [TRUNCATED] 
++   cat("\nPrior sensitivity table (both outcomes):\n"); print(prior_sens_results)
++   write_csv(prior_sens_resu .... [TRUNCATED] 
 
-Prior sensitivity table (Lean):
-  tau_prior_scale mu_mean crI_lb crI_ub p_mu_lt_0
-1             0.5  -2.440 -3.916 -0.899    0.9953
-2             1.0  -2.444 -4.165 -0.587    0.9862
-3             2.0  -2.494 -4.283 -0.659    0.9916
+Prior sensitivity table (both outcomes):
+  outcome tau_prior_scale mu_mean crI_lb crI_ub p_mu_lt_0 tau_post_median
+1    Lean             0.5  -2.440 -3.916 -0.899    0.9953           1.325
+2    Lean             1.0  -2.444 -4.165 -0.587    0.9862           1.431
+3    Lean             2.0  -2.494 -4.283 -0.659    0.9916           1.582
+4     Fat             1.0  -5.074 -9.395 -0.671    0.9854           3.949
+5     Fat             2.0  -5.016 -9.298 -0.356    0.9803           4.160
+6     Fat             5.0  -4.954 -9.678  0.245    0.9712           4.602
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> # ---- 14. BAYESIAN: bayesmeta (cross-validation) ----
+> # ---- 13. BAYESIAN: bayesmeta (second implementation, same model) ----
 > 
-> cat("\n================================================================\n")
+> cat("\n================================================================ ..." ... [TRUNCATED] 
 
 ================================================================
 
-> cat("SECTION 14: BAYESIAN CROSS-VALIDATION (bayesmeta)\n")
-SECTION 14: BAYESIAN CROSS-VALIDATION (bayesmeta)
+> cat("SECTION 13: BAYESIAN, SECOND IMPLEMENTATION (bayesmeta; same data, priors and model)\n")
+SECTION 13: BAYESIAN, SECOND IMPLEMENTATION (bayesmeta; same data, priors and model)
 
 > cat("================================================================\n")
 ================================================================
@@ -1315,8 +1187,8 @@ SURMOUNT-1, STEP-1, SUSTAIN-8, LEAD-2, LEAD-3
 
 tau prior (proper):
 function(t) dhalfcauchy(t, scale = 1)
-<bytecode: 0x0000021cb5b2e808>
-<environment: 0x0000021cb9c128a0>
+<bytecode: 0x00000276ae0b3088>
+<environment: 0x0000027634da8d58>
 
 mu prior (proper):
 normal(mean=0, sd=10)
@@ -1355,8 +1227,8 @@ SURMOUNT-1, STEP-1, SUSTAIN-8, LEAD-2, LEAD-3
 
 tau prior (proper):
 function(t) dhalfcauchy(t, scale = 1)
-<bytecode: 0x0000021cb5b2e808>
-<environment: 0x0000021cbdc76c00>
+<bytecode: 0x00000276ae0b3088>
+<environment: 0x00000276ae025578>
 
 mu prior (proper):
 normal(mean=0, sd=10)
@@ -1389,19 +1261,20 @@ bayesmeta Fat:
 +   cv_table <- data.frame(
 +     Outcome = c("Lean", "F ..." ... [TRUNCATED] 
 
-[Cross-validation: brms vs bayesmeta]
-  Outcome brms_mean         brms_CrI bayesmeta_mean    bayesmeta_CrI abs_diff_pct
-1    Lean    -2.444 [-4.165, -0.587]         -2.465 [-4.133, -0.796]         0.86
-2     Fat    -5.074 [-9.395, -0.671]         -5.016 [-9.280, -0.750]         1.14
+[Two implementations of the same model; agreement is a computational check,
+ not independent evidence]
+  Outcome brms_mean         brms_CrI bayesmeta_mean    bayesmeta_CrI
+1    Lean    -2.444 [-4.165, -0.587]         -2.465 [-4.133, -0.796]
+2     Fat    -5.074 [-9.395, -0.671]         -5.016 [-9.280, -0.750]
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> # ---- 15. KEY RESULTS SUMMARY ----
+> # ---- 14. KEY RESULTS SUMMARY ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 15: KEY RESULTS SUMMARY\n")
-SECTION 15: KEY RESULTS SUMMARY
+> cat("SECTION 14: KEY RESULTS SUMMARY\n")
+SECTION 14: KEY RESULTS SUMMARY
 
 > cat("================================================================\n")
 ================================================================
@@ -1441,7 +1314,7 @@ SECTION 15: KEY RESULTS SUMMARY
 2     Lean    Overall (DL sensitivity) 5 -2.486  -3.964 -1.009 0.0010 87.0  2.429  -5.880 0.907
 3     Lean                     Obesity 2 -3.952 -10.097  2.193 0.0775 13.3  0.063      NA    NA
 4     Lean                         T2D 3 -1.527  -4.377  1.323 0.1477 73.3  1.001  -6.690 3.636
-5     Lean               Mono GLP-1 RA 4 -1.996  -4.115  0.123 0.0578 79.1  1.399  -6.315 2.323
+5     Lean   GLP-1 mono-agonist trials 4 -1.996  -4.115  0.123 0.0578 79.1  1.399  -6.315 2.323
 6      Fat Overall (HKSJ-REML primary) 5 -5.287 -10.783  0.208 0.0557 94.6 18.132 -18.325 7.750
 7      Fat    Overall (DL sensitivity) 5 -5.267  -8.813 -1.721 0.0036 93.5 15.066 -13.661 3.126
 8      Fat                     Obesity 2 -9.652 -43.387 24.083 0.1709 85.8 12.093      NA    NA
@@ -1457,14 +1330,14 @@ SECTION 15: KEY RESULTS SUMMARY
 
 > write_csv(key_results, "output/tables/key_results.csv")
 wrote 2.15GB in  0s, 2.15GB/s                                                                                                                        
-> # ---- 16. SESSION INFO ----
+> # ---- 15. SESSION INFO ----
 > 
 > cat("\n================================================================\n")
 
 ================================================================
 
-> cat("SECTION 16: SESSION INFO\n")
-SECTION 16: SESSION INFO
+> cat("SECTION 15: SESSION INFO\n")
+SECTION 15: SESSION INFO
 
 > cat("================================================================\n")
 ================================================================
