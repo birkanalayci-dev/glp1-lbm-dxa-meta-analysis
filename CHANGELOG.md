@@ -1,5 +1,29 @@
 # Changelog
 
+## Version 2.1, September/October 2026 (second revision for BMC Endocrine Disorders)
+
+No outcome value changed. Changes respond to Reviewer 3 (round 2).
+
+### Data (`data_raw.csv`)
+- LEAD-3 source note corrected: the end-of-study ANCOVA carries forward premature termination visits (Jendle 2009, Statistical Analysis); the earlier note implied no imputation. Values unchanged.
+- `data_raw.csv`: SUSTAIN-8 `n_int`/`n_ctrl` revised from 53/61 (participants with an observed end-of-treatment scan) to 88/90 (DXA analysis set of the confirmatory analysis, with multiple imputation). Table 1 of the manuscript now reports 178 for SUSTAIN-8 and 569 participants in total (T2D stratum 269). No estimate uses n.
+
+### Code
+- `glp1_dxa_meta_v1_3.R` replaces v1.2: meta-regression (old Section 4) and small-study tests (old Section 9) removed; new Section 8 states that reporting bias is not assessable at k = 5; Section 10 writes trial-level lean proportions only (no pooled value); leave-one-out tables gain a `CI_includes_0` column; new stratified forest plots (Fig. 3) with fixed axes and truncation handling; Bayesian prior sensitivity for both outcomes with priors in kg; bayesmeta relabelled as a second implementation of the same model; `metasens` no longer required.
+- `refresh_forests_v1_3.R` added (forest plots only, no Stan).
+- `revision_analyses.R` v2: pooled lean-fraction block (R5, R5b) removed.
+
+### New material
+- `rob2/`: RoB 2 signalling questions per trial with the estimand assessed and the supporting source passage. STEP-1 domain 5 changed from some concerns to low; all other judgements unchanged.
+- `searches/`: ClinicalTrials.gov outcome-field search (23 records), EU CTR (42 queries, 3 records), CTIS (24 records), Novo Nordisk repository (free-text and synopsis screening), sponsor correspondence (27 February and 10 March 2026); none identified an eligible trial with unreported DXA outcomes. Record-level screening decisions for the update searches (648 records; 7 full texts; 0 eligible) added as TSV files.
+- `audit/`: independent human audit of the 14 outcome values and 5 baseline values (returned 27 September 2026; no discrepancy).
+
+### Removed from the tree
+- Outputs of withdrawn analyses (`output/figures/doi_*.png`, `output/tables/small_study_effects.csv`, `lean_share_descriptive.csv`, `revision_lean_fraction_descriptive.csv`), superseded tables (`bayesian_cross_validation.csv`, `brms_prior_sensitivity_lean.csv`) and the first-revision `revision_*.csv` files (now in `output/revision/` under their script names). All remain in release v2.0.
+
+### Results
+- Unchanged. Certainty remains very low for all outcomes.
+
 ## Version 2, September 2026 (revision for BMC Endocrine Disorders)
 
 ### Data (`data_raw.csv`)

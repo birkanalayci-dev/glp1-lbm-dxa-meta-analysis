@@ -1,7 +1,7 @@
 {
-  "title": "DXA-measured body composition effects of GLP-1 and dual GIP/GLP-1 receptor agonists in adults with obesity or type 2 diabetes: analysis code and data (version 2.0, revised for BMC Endocrine Disorders)",
+  "title": "DXA-measured lean and fat mass differences with incretin-based therapy versus comparators: analysis code and data (version 2.1, second revision for BMC Endocrine Disorders)",
   "upload_type": "software",
-  "description": "<p>Data and R code for the systematic review and meta-analysis of phase 3 randomized trials reporting DXA-derived lean body mass and fat mass with GLP-1 and dual GIP/GLP-1 receptor agonists (PROSPERO CRD420261323497). Version 2.0 (September 2026) accompanies the revised manuscript submitted to <em>BMC Endocrine Disorders</em>: three lean-mass values (STEP-1, LEAD-2, LEAD-3) were corrected after re-verification against the primary source tables during peer review; the data file documents the source table for every value and the originally submitted data are retained as data_raw_v1_submitted.csv. The analysis (glp1_dxa_meta_v1_2.R, revision_analyses.R) implements the REML + Hartung-Knapp-Sidik-Jonkman primary model, prediction intervals, tau-squared estimator comparison, profile-likelihood intervals, robust variance estimation, a three-level model, leave-one-out and expanded-inclusion analyses, small-study-effect diagnostics (Egger, Begg, Doi plot/LFK via metasens) and Bayesian random-effects models (brms, bayesmeta). All outputs (tables, figures, console log) are included; see README.md and CHANGELOG.md.</p>",
+  "description": "<p>Data and R code for the systematic review and meta-analysis of phase 3 randomized trials reporting DXA-derived lean body mass and fat mass with GLP-1 and dual GIP/GLP-1 receptor agonists (PROSPERO CRD420261323497). Version 2.1 (September/October 2026) accompanies the second revised manuscript submitted to <em>BMC Endocrine Disorders</em>. No extracted value changed from version 2.0. The principal presentation is now stratified by population and comparator type, the five-trial pooled estimate is a secondary summary, and the meta-regression, small-study tests and pooled lean proportion were withdrawn. New at 2.1: the RoB 2 assessment against the specific estimand synthesized (rob2/), searches of trial registries and sponsor repositories for unpublished DXA outcomes (searches/), and the independent human audit of data extraction (audit/). The analysis (glp1_dxa_meta_v1_3.R, revision_analyses.R, refresh_forests_v1_3.R) implements the REML + Hartung-Knapp-Sidik-Jonkman primary model, prediction intervals, tau-squared estimator comparison, profile-likelihood intervals, robust variance estimation, a three-level model, leave-one-out and expanded-inclusion analyses, and Bayesian random-effects models (brms, bayesmeta) with prior sensitivity. All outputs (tables, figures, console log) are included; see README.md and CHANGELOG.md.</p>",
   "creators": [
     {
       "name": "Alaycı, Birkan",
@@ -31,12 +31,12 @@
   "license": "cc-by-4.0",
   "access_right": "open",
   "language": "eng",
-  "version": "2.0",
+  "version": "2.1",
   "related_identifiers": [
     {
       "identifier": "https://www.crd.york.ac.uk/PROSPERO/view/CRD420261323497",
       "relation": "references"
     }
   ],
-  "notes": "Code: MIT License (see LICENSE). Extracted trial-level data, tables and figures: CC BY 4.0. The underlying trial reports remain the property of their publishers and sponsors. LEAD-2 and LEAD-3 clinical trial report data were obtained through the Novo Nordisk external researcher data access service."
+  "notes": "Code: MIT License (see LICENSE). Extracted trial-level data, tables and figures: CC BY 4.0. The underlying trial reports remain the property of their publishers and sponsors. The LEAD-2 and LEAD-3 clinical trial reports are redacted versions publicly available from novonordisk-trials.com."
 }
