@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 2.1.1, October 2026 (third revision for BMC Endocrine Disorders)
+
+- `audit/`: addendum to the independent audit (12 October 2026): the SUSTAIN-8 analysis-set denominators (88 / 90; 178), the number with an observed end-of-treatment scan (53 / 61; 114) and the analysis population of the confirmatory analysis were checked by the auditor against McCrimmon et al. 2020 and confirmed (`Audit_addendum_SUSTAIN-8_sample_sizes.xlsx`, `Auditor_statement_addendum_signed_2026-10-12.pdf`). No data, code, output or estimate changed.
+
 ## Version 2.1, September/October 2026 (second revision for BMC Endocrine Disorders)
 
 No outcome value changed. Changes respond to Reviewer 3 (round 2).

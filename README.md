@@ -5,7 +5,7 @@ Systematic review and meta-analysis of phase 3 randomized trials with DXA-derive
 **Authors:** Birkan Alaycı, Öykü Zeynep Gerçek  
 **Registration:** PROSPERO CRD420261323497  
 **Manuscript:** under peer review at *BMC Endocrine Disorders* (submission 69e5b6d9; second revised version, September/October 2026)  
-**Archive:** Zenodo concept DOI 10.5281/zenodo.19158245 (resolves to the latest version; this release = version 2.1, archived automatically from the GitHub release v2.1; version 2.0 = 10.5281/zenodo.22528130)
+**Archive:** Zenodo concept DOI 10.5281/zenodo.19158245 (resolves to the latest version; this release = version 2.1.1 (audit addendum), archived automatically from the GitHub release; version 2.1 = 10.5281/zenodo.23002419; version 2.0 = 10.5281/zenodo.22528130)
 
 ## Version 2.1 (September/October 2026): what changed
 
@@ -47,7 +47,7 @@ The analysis is implemented in R. The Python scripts and R cross-validation scri
 | `refresh_forests_v1_3.R` | Re-renders all forest plots from `data_raw.csv` in seconds (identical to Section 11 of the main script; no Stan). |
 | `rob2/` | RoB 2 re-assessment: estimand per trial and answers to all signalling questions with the supporting source passage. |
 | `searches/` | Registry and sponsor-repository searches for unpublished DXA outcomes (21 September 2026), the raw CTIS export, and the record-level screening decisions for the update searches (PubMed, CENTRAL, Scopus, 4 September 2026; Web of Science, 6 September 2026). |
-| `audit/` | Independent human audit of data extraction: the table as returned by the auditor, the signed statement and a README. |
+| `audit/` | Independent human audit of data extraction: the table as returned by the auditor, the signed statement, the addendum of 12 October 2026 on the SUSTAIN-8 sample sizes with its signed statement, and a README. |
 | `revision_analyses.R` | Analyses added at the first revision: prediction intervals for subgroups, HKSJ leave-one-out, primary analyses excluding STEP-1 (Table S8). Version 2 (2.1): pooled lean-fraction block removed. |
 | `output/tables/*.csv` | All numerical outputs (key_results, tau2 comparisons, profile likelihood, RVE, three-level, LOO, Bayesian two-implementation comparison, prior sensitivity for both outcomes, trial-level lean proportions). |
 | `output/figures/*.png` | Forest plots (stratified, five-trial overall, by population, by comparator) and bayesmeta posteriors. |
